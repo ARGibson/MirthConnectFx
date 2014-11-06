@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultRemoteRequestFactory.cs" />
+    <Compile Include="IMirthClient.cs" />
+    <Compile Include="IMirthConnectSession.cs" />
+    <Compile Include="IRemoteRequest.cs" />
+    <Compile Include="IRemoteRequestFactory.cs" />
+    <Compile Include="IRemoteResponse.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="MirthConnectClient.cs" />
+    <Compile Include="MirthConnectSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteResponse.cs" />
+    <Compile Include="UsersService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
