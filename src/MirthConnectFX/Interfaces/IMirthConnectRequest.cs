@@ -1,8 +1,8 @@
 ﻿namespace MirthConnectFX
 {
-    public interface IRemoteRequest
+    public interface IMirthConnectRequest
     {
-        IRemoteResponse Execute();
+        IMirthConnectResponse Execute();
         void AddPostData(string key, string value);
     }
 }

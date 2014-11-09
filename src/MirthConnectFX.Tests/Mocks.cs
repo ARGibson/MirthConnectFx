@@ -3,25 +3,25 @@ using System.Net;
 
 namespace MirthConnectFX.Tests
 {
-    public class MockRemoteRequestFactory : IRemoteRequestFactory
+    public class MockMirthConnectRequestFactory : IMirthConnectRequestFactory
     {
-        public IRemoteRequest CreateRemoteRequest(string path)
+        public IMirthConnectRequest CreateRemoteRequest(string path)
         {
-            return new MockRemoteRequest();
+            return new MockMirthConnectRequest();
         }
     }
     
-    public class MockRemoteRequest : IRemoteRequest
+    public class MockMirthConnectRequest : IMirthConnectRequest
     {
-        public IRemoteResponse Execute()
+        public IMirthConnectResponse Execute()
         {
-            return new MockRemoteResponse();
+            return new MockMirthConnectResponse();
         }
 
         public void AddPostData(string key, string value) { }
     }
 
-    public class MockRemoteResponse : IRemoteResponse
+    public class MockMirthConnectResponse : IMirthConnectResponse
     {
         public List<Cookie> Cookies
         {

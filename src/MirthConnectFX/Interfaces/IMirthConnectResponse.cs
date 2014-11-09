@@ -3,7 +3,7 @@ using System.Net;
 
 namespace MirthConnectFX
 {
-    public interface IRemoteResponse
+    public interface IMirthConnectResponse
     {
         List<Cookie> Cookies { get; }
     }

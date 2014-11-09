@@ -9,9 +9,9 @@ namespace MirthConnectFX.Tests
         [Test]
         public void MirthConnectClient_CanLogin()
         {
-            var client = MirthConnectClient
+            var client = MirthConnectConnectClient
                 .Create()
-                .WithRemoteRequestFactory(new MockRemoteRequestFactory());
+                .WithRemoteRequestFactory(new MockMirthConnectRequestFactory());
 
             var session = client.Users.Login("username", "password", "version");
 
