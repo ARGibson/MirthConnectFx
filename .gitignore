@@ -1,4 +1,5 @@
 *.suo
+*.DotSettings
 *\bin
 *\obj
 *\packages

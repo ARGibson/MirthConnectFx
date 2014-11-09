@@ -40,12 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultRemoteRequestFactory.cs" />
-    <Compile Include="IMirthClient.cs" />
-    <Compile Include="IMirthConnectSession.cs" />
-    <Compile Include="IRemoteRequest.cs" />
-    <Compile Include="IRemoteRequestFactory.cs" />
-    <Compile Include="IRemoteResponse.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="Interfaces\IMirthClient.cs" />
+    <Compile Include="Interfaces\IMirthConnectSession.cs" />
+    <Compile Include="Interfaces\IRemoteRequest.cs" />
+    <Compile Include="Interfaces\IRemoteRequestFactory.cs" />
+    <Compile Include="Interfaces\IRemoteResponse.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="MirthConnectClient.cs" />
     <Compile Include="MirthConnectSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
