@@ -4,7 +4,8 @@
     {
         private IMirthConnectRequestFactory _mirthConnectRequestFactory;
 
-        public IUserService Users { get { return new UsersService(_mirthConnectRequestFactory); } }
+        public IConfigurationService Configuration  { get { return new ConfigurationService(_mirthConnectRequestFactory); } }
+        public IUserService          Users          { get { return new UsersService(_mirthConnectRequestFactory); } }
 
         public MirthConnectClient()
         {

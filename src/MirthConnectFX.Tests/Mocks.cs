@@ -77,10 +77,23 @@ namespace MirthConnectFX.Tests
 
     public class MockHttpWebResponse : IHttpWebResponse
     {
+        private Stream responseStream;
+        
         public CookieCollection Cookies { get; set; }
+
+        public MockHttpWebResponse()
+        {
+            responseStream = Stream.Null;
+        }
+
         public Stream GetResponseStream()
         {
-            return Stream.Null;
+            return responseStream;
+        }
+
+        public void SetResponseStream(Stream stream)
+        {
+            responseStream = stream;
         }
     }
 }

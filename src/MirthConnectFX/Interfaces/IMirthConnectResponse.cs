@@ -6,5 +6,6 @@ namespace MirthConnectFX
     public interface IMirthConnectResponse
     {
         List<Cookie> Cookies { get; }
+        string Content { get; }
     }
 }

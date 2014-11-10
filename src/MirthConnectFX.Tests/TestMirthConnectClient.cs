@@ -19,5 +19,18 @@ namespace MirthConnectFX.Tests
 
             session.SessionID.ShouldEqual("12345");
         }
+
+        [Test]
+        public void MirthConnectClient_CanGetVersion()
+        {
+            var client = MirthConnectClient
+                .Create()
+                .WithRemoteRequestFactory(RequestFactory);
+
+            WithExpectedRequest("https://localhost:8443/configuration", "2.2.1.5861");
+
+            var version = client.Configuration.GetVersion();
+            version.ShouldEqual("2.2.1.5861");
+        }
     }
 }
