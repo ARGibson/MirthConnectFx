@@ -9,7 +9,7 @@ namespace MirthConnectFX.Tests
         [Test]
         public void MirthConnectClient_CanLogin()
         {            
-            var client = MirthConnectConnectClient
+            var client = MirthConnectClient
                 .Create()
                 .WithRemoteRequestFactory(RequestFactory);
 

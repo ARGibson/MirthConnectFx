@@ -1,19 +1,19 @@
 ﻿namespace MirthConnectFX
 {
-    public class MirthConnectConnectClient : IMirthConnectClient
+    public class MirthConnectClient : IMirthConnectClient
     {
         private IMirthConnectRequestFactory _mirthConnectRequestFactory;
 
         public IUserService Users { get { return new UsersService(_mirthConnectRequestFactory); } }
 
-        public MirthConnectConnectClient()
+        public MirthConnectClient()
         {
             WithRemoteRequestFactory(new DefaultMirthConnectRequestFactory());
         }
 
         public static IMirthConnectClient Create()
         {
-            return new MirthConnectConnectClient();
+            return new MirthConnectClient();
         }
 
         public IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory)

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9AF68241-9F4E-4E19-8FB1-DD6E11BF0DE1}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{83F3537C-EBB5-4E44-BAC0-0178CAEDEB8E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MirthConnectFX</RootNamespace>
-    <AssemblyName>MirthConnectFX</AssemblyName>
+    <RootNamespace>MirthConnectFX.Sample</RootNamespace>
+    <AssemblyName>MirthConnectFX.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,25 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultMirthConnectRequestFactory.cs" />
-    <Compile Include="HttpWebRequestAdapter.cs" />
-    <Compile Include="HttpWebRequestFactory.cs" />
-    <Compile Include="HttpWebResponseAdapter.cs" />
-    <Compile Include="Interfaces\IHttpWebRequest.cs" />
-    <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
-    <Compile Include="Interfaces\IHttpWebResponse.cs" />
-    <Compile Include="Interfaces\IMirthConnectClient.cs" />
-    <Compile Include="Interfaces\IMirthConnectSession.cs" />
-    <Compile Include="Interfaces\IMirthConnectRequest.cs" />
-    <Compile Include="Interfaces\IMirthConnectRequestFactory.cs" />
-    <Compile Include="Interfaces\IMirthConnectResponse.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="MirthConnectClient.cs" />
-    <Compile Include="MirthConnectRequest.cs" />
-    <Compile Include="MirthConnectSession.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MirthConnectResponse.cs" />
-    <Compile Include="UsersService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MirthConnectFX\MirthConnectFX.csproj">
+      <Project>{9AF68241-9F4E-4E19-8FB1-DD6E11BF0DE1}</Project>
+      <Name>MirthConnectFX</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
