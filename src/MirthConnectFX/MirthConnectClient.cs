@@ -2,14 +2,16 @@
 {
     public class MirthConnectClient : IMirthConnectClient
     {
-        private IMirthConnectRequestFactory _mirthConnectRequestFactory;
+        private IMirthConnectRequestFactory mirthConnectRequestFactory;
+        private IMirthConnectSession session;
 
-        public IConfigurationService Configuration  { get { return new ConfigurationService(_mirthConnectRequestFactory); } }
-        public IUserService          Users          { get { return new UsersService(_mirthConnectRequestFactory); } }
+        public IConfigurationService Configuration  { get { return new ConfigurationService(mirthConnectRequestFactory, session); } }
+        public IUserService          Users          { get { return new UsersService(mirthConnectRequestFactory); } }
 
         public MirthConnectClient()
         {
             WithRemoteRequestFactory(new DefaultMirthConnectRequestFactory());
+            WithSession(new MirthConnectSession(string.Empty));
         }
 
         public static IMirthConnectClient Create()
@@ -19,7 +21,13 @@
 
         public IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory)
         {
-            this._mirthConnectRequestFactory = _mirthConnectRequestFactory;
+            this.mirthConnectRequestFactory = _mirthConnectRequestFactory;
+            return this;
+        }
+
+        public IMirthConnectClient WithSession(IMirthConnectSession session)
+        {
+            this.session = session;
             return this;
         }
     }

@@ -6,5 +6,6 @@ namespace MirthConnectFX
         IUserService            Users           { get; }
         
         IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory);
+        IMirthConnectClient WithSession(IMirthConnectSession session);
     }
 }

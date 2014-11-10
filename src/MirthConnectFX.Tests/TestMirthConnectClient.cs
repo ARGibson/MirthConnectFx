@@ -25,6 +25,7 @@ namespace MirthConnectFX.Tests
         {
             var client = MirthConnectClient
                 .Create()
+                .WithSession(new MirthConnectSession("12345"))
                 .WithRemoteRequestFactory(RequestFactory);
 
             WithExpectedRequest("https://localhost:8443/configuration", "2.2.1.5861");

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 
 namespace MirthConnectFX
@@ -9,6 +10,7 @@ namespace MirthConnectFX
         string ContentType { get; set; }
         long ContentLength { get; set; }
         CookieContainer CookieContainer { get; set; }
+        Uri RequestUri { get; }
         IHttpWebResponse GetResponse();
         Stream GetRequestStream();
     }

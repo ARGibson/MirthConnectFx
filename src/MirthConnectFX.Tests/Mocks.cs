@@ -53,6 +53,7 @@ namespace MirthConnectFX.Tests
         public string ContentType { get; set; }
         public long ContentLength { get; set; }
         public CookieContainer CookieContainer { get; set; }
+        public Uri RequestUri { get { return new Uri("https://localhost:8443"); } }
 
         public MockHttpWebRequest()
         {

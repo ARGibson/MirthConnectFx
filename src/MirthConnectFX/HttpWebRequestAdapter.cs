@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 
@@ -29,6 +30,11 @@ namespace MirthConnectFX
         {
             get { return request.CookieContainer; }
             set { request.CookieContainer = value; }
+        }
+
+        public Uri RequestUri
+        {
+            get { return request.RequestUri; }
         }
 
         public HttpWebRequestAdapter(HttpWebRequest request)
