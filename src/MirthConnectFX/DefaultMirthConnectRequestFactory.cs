@@ -2,9 +2,18 @@
 {
     public class DefaultMirthConnectRequestFactory : IMirthConnectRequestFactory
     {
-        public IMirthConnectRequest CreateRemoteRequest(string path)
+        private const string BaseUrl = "https://localhost:8443/";
+
+        protected IHttpWebRequestFactory HttpWebRequestFactory { get; set; }
+
+        public DefaultMirthConnectRequestFactory()
         {
-            throw new System.NotImplementedException();
+            HttpWebRequestFactory = new HttpWebRequestFactory();
+        }
+        
+        public virtual IMirthConnectRequest Create(string path)
+        {
+            return new MirthConnectRequest(HttpWebRequestFactory, string.Concat(BaseUrl, path));
         }
     }
 }

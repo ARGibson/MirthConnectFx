@@ -2,6 +2,6 @@
 {
     public interface IMirthConnectRequestFactory
     {
-        IMirthConnectRequest CreateRemoteRequest(string path);
+        IMirthConnectRequest Create(string path);
     }
 }

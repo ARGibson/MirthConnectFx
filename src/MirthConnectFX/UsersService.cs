@@ -13,7 +13,7 @@ namespace MirthConnectFX
         
         public IMirthConnectSession Login(string username, string password, string version)
         {
-            var request = mirthConnectRequestFactory.CreateRemoteRequest("users");
+            var request = mirthConnectRequestFactory.Create("users");
             request.AddPostData("op", "login");
             request.AddPostData("username", username);
             request.AddPostData("password", password);

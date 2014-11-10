@@ -40,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultMirthConnectRequestFactory.cs" />
+    <Compile Include="HttpWebRequestAdapter.cs" />
+    <Compile Include="HttpWebRequestFactory.cs" />
+    <Compile Include="HttpWebResponseAdapter.cs" />
+    <Compile Include="Interfaces\IHttpWebRequest.cs" />
+    <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
+    <Compile Include="Interfaces\IHttpWebResponse.cs" />
     <Compile Include="Interfaces\IMirthConnectClient.cs" />
     <Compile Include="Interfaces\IMirthConnectSession.cs" />
     <Compile Include="Interfaces\IMirthConnectRequest.cs" />
@@ -47,6 +53,7 @@
     <Compile Include="Interfaces\IMirthConnectResponse.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="MirthConnectConnectClient.cs" />
+    <Compile Include="MirthConnectRequest.cs" />
     <Compile Include="MirthConnectSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MirthConnectResponse.cs" />
