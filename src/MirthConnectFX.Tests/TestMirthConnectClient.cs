@@ -15,7 +15,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest("https://localhost:8443/users");
 
-            var session = client.Users.Login("username", "password", "version");
+            var session = client.Login("username", "password", "version");
 
             session.SessionID.ShouldEqual("12345");
         }

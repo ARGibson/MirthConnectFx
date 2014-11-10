@@ -10,9 +10,13 @@ namespace MirthConnectFX.Sample
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) => true;
             
             var client = new MirthConnectClient();
-            var session = client.Users.Login("admin", "admin", "0.0.0");
-
+            
+            var session = client.Login("admin", "admin", "0.0.0");
             Console.WriteLine(session.SessionID);
+
+            var version = client.Configuration.GetVersion();
+            Console.WriteLine(version);
+
             Console.Read();
         }
     }

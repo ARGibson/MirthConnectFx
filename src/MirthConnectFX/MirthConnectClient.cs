@@ -19,9 +19,9 @@
             return new MirthConnectClient();
         }
 
-        public IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory)
+        public IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory mirthConnectRequestFactory)
         {
-            this.mirthConnectRequestFactory = _mirthConnectRequestFactory;
+            this.mirthConnectRequestFactory = mirthConnectRequestFactory;
             return this;
         }
 
@@ -29,6 +29,14 @@
         {
             this.session = session;
             return this;
+        }
+
+        public IMirthConnectSession Login(string username, string password, string version)
+        {
+            var session = Users.Login(username, password, version);
+            WithSession(session);
+
+            return session;
         }
     }
 }
