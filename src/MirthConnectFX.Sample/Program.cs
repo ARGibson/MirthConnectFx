@@ -13,9 +13,7 @@ namespace MirthConnectFX.Sample
             
             var session = client.Login("admin", "admin", "0.0.0");
             Console.WriteLine(session.SessionID);
-
-            var version = client.Configuration.GetVersion();
-            Console.WriteLine(version);
+            Console.WriteLine(session.Version);
 
             var summary = client.Channels.GetChannelSummary();
             Console.Write(summary);

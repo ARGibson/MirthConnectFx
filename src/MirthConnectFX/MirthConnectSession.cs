@@ -3,6 +3,7 @@
     public class MirthConnectSession : IMirthConnectSession
     {
         public string SessionID { get; private set; }
+        public string Version { get; set; }
 
         public MirthConnectSession(string sessionId)
         {

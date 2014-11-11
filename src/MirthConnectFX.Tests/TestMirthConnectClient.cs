@@ -21,17 +21,17 @@ namespace MirthConnectFX.Tests
         }
 
         [Test]
-        public void MirthConnectClient_CanGetVersion()
+        public void MirthConnectClient_Login_GetsVersion()
         {
             var client = MirthConnectClient
                 .Create()
-                .WithSession(new MirthConnectSession("12345"))
                 .WithRemoteRequestFactory(RequestFactory);
 
+            WithExpectedRequest("https://localhost:8443/users");
             WithExpectedRequest("https://localhost:8443/configuration", "2.2.1.5861");
 
-            var version = client.Configuration.GetVersion();
-            version.ShouldEqual("2.2.1.5861");
+            var session = client.Login("username", "password", "version");
+            session.Version.ShouldEqual("2.2.1.5861");
         }
 
         [Test]

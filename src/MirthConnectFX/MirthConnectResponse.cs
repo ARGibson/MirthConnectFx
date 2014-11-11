@@ -17,7 +17,8 @@ namespace MirthConnectFX
 
         private void ProcessResponse(IHttpWebResponse httpWebResponse)
         {
-            Cookies = httpWebResponse.Cookies.Cast<Cookie>().ToList();
+            if (httpWebResponse.Cookies != null)
+                Cookies = httpWebResponse.Cookies.Cast<Cookie>().ToList();
 
             using (var reader = new StreamReader(httpWebResponse.GetResponseStream()))
             {

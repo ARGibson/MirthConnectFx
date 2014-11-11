@@ -61,6 +61,7 @@
     <Compile Include="MirthConnectSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MirthConnectResponse.cs" />
+    <Compile Include="ServiceBase.cs" />
     <Compile Include="UsersService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

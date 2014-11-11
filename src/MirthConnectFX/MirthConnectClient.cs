@@ -37,6 +37,8 @@
             var session = Users.Login(username, password, version);
             WithSession(session);
 
+            session.Version = Configuration.GetVersion();
+
             return session;
         }
     }
