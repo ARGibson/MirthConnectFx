@@ -1,22 +1,14 @@
-﻿using System.Net;
-
-namespace MirthConnectFX
+﻿namespace MirthConnectFX
 {
-    public class ConfigurationService : IConfigurationService
+    public class ConfigurationService : ServiceBase, IConfigurationService
     {
-        private readonly IMirthConnectRequestFactory mirthConnectRequestFactory;
-        private readonly IMirthConnectSession session;
-
-        public ConfigurationService(IMirthConnectRequestFactory mirthConnectRequestFactory, IMirthConnectSession session)
-        {
-            this.mirthConnectRequestFactory = mirthConnectRequestFactory;
-            this.session = session;
-        }
+        public ConfigurationService(IMirthConnectRequestFactory mirthConnectRequestFactory, IMirthConnectSession session) 
+            : base(mirthConnectRequestFactory, session) {}
 
         public string GetVersion()
         {
-            var request = mirthConnectRequestFactory.Create("configuration");
-            request.AuthSessionId = session.SessionID;
+            var request = MirthConnectRequestFactory.Create("configuration");
+            request.AuthSessionId = Session.SessionID;
             request.AddPostData("op", "getVersion");
 
             var response = request.Execute();

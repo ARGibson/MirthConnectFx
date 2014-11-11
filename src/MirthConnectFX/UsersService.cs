@@ -2,18 +2,14 @@
 
 namespace MirthConnectFX
 {
-    public class UsersService : IUserService
+    public class UsersService : ServiceBase, IUserService
     {
-        private readonly IMirthConnectRequestFactory mirthConnectRequestFactory;
-
-        public UsersService(IMirthConnectRequestFactory mirthConnectRequestFactory)
-        {
-            this.mirthConnectRequestFactory = mirthConnectRequestFactory;
-        }
+        public UsersService(IMirthConnectRequestFactory mirthConnectRequestFactory) 
+            : base(mirthConnectRequestFactory, new MirthConnectSession(string.Empty)) {}
         
         public IMirthConnectSession Login(string username, string password, string version)
         {
-            var request = mirthConnectRequestFactory.Create("users");
+            var request = MirthConnectRequestFactory.Create("users");
             request.AddPostData("op", "login");
             request.AddPostData("username", username);
             request.AddPostData("password", password);
