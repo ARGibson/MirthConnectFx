@@ -32,5 +32,12 @@ namespace MirthConnectFX.Tests
             
             RequestFactory.SetRequest(url, request);
         }
+
+        public static class Requests
+        {
+            public static string Configuration  { get { return "https://localhost:8443/configuration"; } }
+            public static string Users          { get { return "https://localhost:8443/users"; } }
+            public static string Channels       { get { return "https://localhost:8443/channels"; } }
+        }
     }
 }

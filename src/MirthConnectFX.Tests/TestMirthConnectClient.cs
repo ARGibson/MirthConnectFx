@@ -13,7 +13,7 @@ namespace MirthConnectFX.Tests
                 .Create()
                 .WithRemoteRequestFactory(RequestFactory);
 
-            WithExpectedRequest("https://localhost:8443/users");
+            WithExpectedRequest(Requests.Users);
 
             var session = client.Login("username", "password", "version");
 
@@ -27,8 +27,8 @@ namespace MirthConnectFX.Tests
                 .Create()
                 .WithRemoteRequestFactory(RequestFactory);
 
-            WithExpectedRequest("https://localhost:8443/users");
-            WithExpectedRequest("https://localhost:8443/configuration", "2.2.1.5861");
+            WithExpectedRequest(Requests.Users);
+            WithExpectedRequest(Requests.Configuration, "2.2.1.5861");
 
             var session = client.Login("username", "password", "version");
             session.Version.ShouldEqual("2.2.1.5861");
@@ -50,7 +50,7 @@ namespace MirthConnectFX.Tests
                                   </channelSummary>
                                 </list>";
 
-            WithExpectedRequest("https://localhost:8443/channels", responseXml);
+            WithExpectedRequest(Requests.Channels, responseXml);
 
             var summary = client.Channels.GetChannelSummary();
             summary.ShouldContain(responseXml);
