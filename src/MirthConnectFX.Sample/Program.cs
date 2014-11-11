@@ -17,6 +17,9 @@ namespace MirthConnectFX.Sample
             var version = client.Configuration.GetVersion();
             Console.WriteLine(version);
 
+            var summary = client.Channels.GetChannelSummary();
+            Console.Write(summary);
+
             Console.Read();
         }
     }

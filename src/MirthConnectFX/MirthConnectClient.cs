@@ -7,6 +7,7 @@
 
         public IConfigurationService Configuration  { get { return new ConfigurationService(mirthConnectRequestFactory, session); } }
         public IUserService          Users          { get { return new UsersService(mirthConnectRequestFactory); } }
+        public IChannelsService      Channels       { get { return new ChannelsService(mirthConnectRequestFactory, session); }}
 
         public MirthConnectClient()
         {

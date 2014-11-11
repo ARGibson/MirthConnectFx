@@ -4,6 +4,7 @@ namespace MirthConnectFX
     {
         IConfigurationService   Configuration   { get; }
         IUserService            Users           { get; }
+        IChannelsService        Channels        { get; }
         
         IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory);
         IMirthConnectClient WithSession(IMirthConnectSession session);

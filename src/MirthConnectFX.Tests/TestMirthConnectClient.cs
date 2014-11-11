@@ -33,5 +33,27 @@ namespace MirthConnectFX.Tests
             var version = client.Configuration.GetVersion();
             version.ShouldEqual("2.2.1.5861");
         }
+
+        [Test]
+        public void MirthConnectClient_CanGetChannelSummary()
+        {
+            var client = MirthConnectClient
+                .Create()
+                .WithSession(new MirthConnectSession("12345"))
+                .WithRemoteRequestFactory(RequestFactory);
+
+            const string responseXml = @"<list>
+                                  <channelSummary>
+                                    <id>0f2783ee-ced9-414c-8854-6840e74e8e21</id>
+                                    <added>true</added>
+                                    <deleted>false</deleted>
+                                  </channelSummary>
+                                </list>";
+
+            WithExpectedRequest("https://localhost:8443/channels", responseXml);
+
+            var summary = client.Channels.GetChannelSummary();
+            summary.ShouldContain(responseXml);
+        }
     }
 }
