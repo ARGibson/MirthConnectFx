@@ -1,7 +1,10 @@
-﻿namespace MirthConnectFX
+﻿using System.Collections.Generic;
+using MirthConnectFX.Model;
+
+namespace MirthConnectFX
 {
     public interface IChannelsService
     {
-        string GetChannelSummary();
+        IEnumerable<ChannelSummary> GetChannelSummary();
     }
 }

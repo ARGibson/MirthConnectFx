@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Mocks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestChannelService.cs" />
     <Compile Include="TestContext.cs" />
     <Compile Include="TestMirthConnectClient.cs" />
   </ItemGroup>
