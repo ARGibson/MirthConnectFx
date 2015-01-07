@@ -6,5 +6,6 @@ namespace MirthConnectFX
     public interface IChannelsService
     {
         IEnumerable<ChannelSummary> GetChannelSummary();
+        bool Update(Channel channel);
     }
 }

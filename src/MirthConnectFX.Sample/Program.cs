@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Xml.Serialization;
+using MirthConnectFX.Model;
 
 namespace MirthConnectFX.Sample
 {
@@ -17,6 +20,13 @@ namespace MirthConnectFX.Sample
 
             var summary = client.Channels.GetChannelSummary();
             Console.Write(summary);
+
+            var channelFile = File.ReadAllText(@"..\..\..\..\lib\FX Test Channel.xml");
+
+            var xmlSerializer = new XmlSerializer(typeof(Channel));
+            var channel = (Channel)xmlSerializer.Deserialize(new StringReader(channelFile));
+
+            var result = client.Channels.Update(channel);
 
             Console.Read();
         }

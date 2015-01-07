@@ -7,9 +7,19 @@ namespace MirthConnectFX.Tests
 {
     public class MockMirthConnectRequestFactory : DefaultMirthConnectRequestFactory
     {
-        private MockHttpWebRequestFactory MockHttpFactory 
+        public IMirthConnectRequest LastRequest { get; private set; }
+        
+        public MockHttpWebRequestFactory MockHttpFactory 
         { 
             get { return (MockHttpWebRequestFactory) HttpWebRequestFactory; } 
+        }
+
+        public override IMirthConnectRequest Create(string path)
+        {
+            var request = base.Create(path);
+            LastRequest = request;
+
+            return request;
         }
 
         public MockMirthConnectRequestFactory SetHttpWebRequestFactory(IHttpWebRequestFactory factory)
@@ -42,6 +52,11 @@ namespace MirthConnectFX.Tests
         public void SetRequest(string url, IHttpWebRequest request)
         {
             requestMap.Add(url, request);
+        }
+
+        public IHttpWebRequest GetRequest(string channel)
+        {
+            return requestMap.ContainsKey(channel) ? requestMap[channel] : null;
         }
     }
 

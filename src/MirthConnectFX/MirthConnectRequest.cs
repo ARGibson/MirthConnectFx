@@ -45,6 +45,11 @@ namespace MirthConnectFX
             postData.Add(key, value);
         }
 
+        public IDictionary<string, string> GetPostData()
+        {
+            return postData;
+        }
+
         private byte[] PreparePostData()
         {
             var sb = new StringBuilder();

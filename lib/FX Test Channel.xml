@@ -1,0 +1,129 @@
+<channel>
+  <id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>
+  <name>FX Test Channel</name>
+  <description></description>
+  <enabled>false</enabled>
+  <version>2.2.1.5861</version>
+  <lastModified>
+    <time>1419955318423</time>
+    <timezone>Europe/London</timezone>
+  </lastModified>
+  <revision>5</revision>
+  <sourceConnector>
+    <name>sourceConnector</name>
+    <properties>
+      <property name="DataType">File Reader</property>
+      <property name="FTPAnonymous">1</property>
+      <property name="autoDelete">0</property>
+      <property name="binary">0</property>
+      <property name="charsetEncoding">DEFAULT_ENCODING</property>
+      <property name="checkFileAge">1</property>
+      <property name="fileAge">1000</property>
+      <property name="fileFilter">*.test</property>
+      <property name="host">C:/</property>
+      <property name="ignoreDot">1</property>
+      <property name="moveToDirectory"></property>
+      <property name="moveToErrorDirectory"></property>
+      <property name="moveToPattern"></property>
+      <property name="passive">1</property>
+      <property name="password">anonymous</property>
+      <property name="pollingFrequency">1000</property>
+      <property name="pollingType">interval</property>
+      <property name="processBatchFiles">0</property>
+      <property name="regex">0</property>
+      <property name="scheme">file</property>
+      <property name="secure">1</property>
+      <property name="sortAttribute">date</property>
+      <property name="timeout">10000</property>
+      <property name="username">anonymous</property>
+      <property name="validateConnections">1</property>
+    </properties>
+    <transformer>
+      <steps/>
+      <inboundProtocol>HL7V2</inboundProtocol>
+      <outboundProtocol>HL7V2</outboundProtocol>
+      <inboundProperties>
+        <property name="convertLFtoCR">true</property>
+        <property name="handleRepetitions">false</property>
+        <property name="handleSubcomponents">false</property>
+        <property name="stripNamespaces">true</property>
+        <property name="useStrictParser">false</property>
+        <property name="useStrictValidation">false</property>
+      </inboundProperties>
+      <outboundProperties>
+        <property name="convertLFtoCR">true</property>
+        <property name="handleRepetitions">false</property>
+        <property name="handleSubcomponents">false</property>
+        <property name="stripNamespaces">true</property>
+        <property name="useStrictParser">false</property>
+        <property name="useStrictValidation">false</property>
+      </outboundProperties>
+    </transformer>
+    <filter>
+      <rules/>
+    </filter>
+    <transportName>File Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <version>2.2.1.5861</version>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector>
+      <name>Destination 1</name>
+      <properties>
+        <property name="DataType">JavaScript Writer</property>
+        <property name="host">sink</property>
+        <property name="script">responseMap.put(&apos;Hello, World&apos;);</property>
+      </properties>
+      <transformer>
+        <steps/>
+        <inboundProtocol>HL7V2</inboundProtocol>
+        <outboundProtocol>HL7V2</outboundProtocol>
+        <inboundProperties>
+          <property name="convertLFtoCR">true</property>
+          <property name="handleRepetitions">false</property>
+          <property name="handleSubcomponents">false</property>
+          <property name="stripNamespaces">true</property>
+          <property name="useStrictParser">false</property>
+          <property name="useStrictValidation">false</property>
+        </inboundProperties>
+        <outboundProperties>
+          <property name="convertLFtoCR">true</property>
+          <property name="handleRepetitions">false</property>
+          <property name="handleSubcomponents">false</property>
+          <property name="stripNamespaces">true</property>
+          <property name="useStrictParser">false</property>
+          <property name="useStrictValidation">false</property>
+        </outboundProperties>
+      </transformer>
+      <filter>
+        <rules/>
+      </filter>
+      <transportName>JavaScript Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <version>2.2.1.5861</version>
+    </connector>
+  </destinationConnectors>
+  <properties>
+    <property name="clearGlobalChannelMap">true</property>
+    <property name="dont_store_filtered">false</property>
+    <property name="encryptData">false</property>
+    <property name="error_messages_only">false</property>
+    <property name="initialState">started</property>
+    <property name="max_message_age">-1</property>
+    <property name="store_messages">true</property>
+    <property name="synchronous">true</property>
+    <property name="transactional">false</property>
+  </properties>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <shutdownScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</shutdownScript>
+</channel>
