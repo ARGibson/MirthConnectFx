@@ -34,12 +34,12 @@
 
         public IMirthConnectSession Login(string username, string password, string version)
         {
-            var session = Users.Login(username, password, version);
-            WithSession(session);
+            var newSession = Users.Login(username, password, version);
+            WithSession(newSession);
 
-            session.Version = Configuration.GetVersion();
+            newSession.Version = Configuration.GetVersion();
 
-            return session;
+            return newSession;
         }
     }
 }

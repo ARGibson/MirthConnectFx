@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
 using MirthConnectFX.Model;
 using MirthConnectFX.Utility;
 
@@ -20,7 +16,7 @@ namespace MirthConnectFX
         
         public IEnumerable<ChannelSummary> GetChannelSummary()
         {
-            var request = CreateRequest(Operations.Channels.GetChannelSummary);
+            var request = CreateRequest().ForOperation(Operations.Channels.GetChannelSummary);
             request.AddPostData("cachedChannels", "<map/>");
 
             var response = request.Execute();
@@ -33,7 +29,7 @@ namespace MirthConnectFX
         {
             var channelXml = channel.ToXml();
 
-            var request = CreateRequest(Operations.Channels.UpdateChannel);
+            var request = CreateRequest().ForOperation(Operations.Channels.UpdateChannel);
             request.AddPostData("channel", channelXml);
             request.AddPostData("override", "true");
 
@@ -51,7 +47,7 @@ namespace MirthConnectFX
         public Channel GetChannel(string channelId)
         {
             var channel = new Channel {Id = channelId}.ToXml();
-            var request = CreateRequest(Operations.Channels.GetChannel);
+            var request = CreateRequest().ForOperation(Operations.Channels.GetChannel);
             request.AddPostData("channel", channel);
 
             var response = request.Execute();

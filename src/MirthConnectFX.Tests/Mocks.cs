@@ -7,17 +7,24 @@ namespace MirthConnectFX.Tests
 {
     public class MockMirthConnectRequestFactory : DefaultMirthConnectRequestFactory
     {
-        public IMirthConnectRequest LastRequest { get; private set; }
+        private const string BaseUrl = "https://localhost:8443/";
+
+        public IList<MockMirthConnectRequest> Requests { get; private set; }
         
         public MockHttpWebRequestFactory MockHttpFactory 
         { 
             get { return (MockHttpWebRequestFactory) HttpWebRequestFactory; } 
         }
 
+        public MockMirthConnectRequestFactory()
+        {
+            Requests = new List<MockMirthConnectRequest>();
+        }
+
         public override IMirthConnectRequest Create(string path)
         {
-            var request = base.Create(path);
-            LastRequest = request;
+            var request = new MockMirthConnectRequest(HttpWebRequestFactory, string.Concat(BaseUrl, path));
+            Requests.Add(request);
 
             return request;
         }
@@ -28,16 +35,36 @@ namespace MirthConnectFX.Tests
             return this;
         }
 
-        public MockMirthConnectRequestFactory SetRequest(string url, IHttpWebRequest request)
+        public MockMirthConnectRequestFactory AddRequest(string op, IHttpWebRequest request)
         {
-            MockHttpFactory.SetRequest(url, request);
+            MockHttpFactory.AddRequest(op, request);
             return this;
+        }
+    }
+
+    public class MockMirthConnectRequest : MirthConnectRequest
+    {
+        public string Operation { get; private set; }
+        private readonly MockHttpWebRequestFactory httpRequestFactory;
+
+        public MockMirthConnectRequest(IHttpWebRequestFactory httpRequestFactory, string url)
+            : base(httpRequestFactory, url)
+        {
+            this.httpRequestFactory = (MockHttpWebRequestFactory)httpRequestFactory;
+        }
+
+        public override IMirthConnectRequest ForOperation(string operation)
+        {
+            httpRequestFactory.SetNextOperation(operation);
+            Operation = operation;
+            return base.ForOperation(operation);
         }
     }
 
     public class MockHttpWebRequestFactory : IHttpWebRequestFactory
     {
         private readonly IDictionary<string, IHttpWebRequest> requestMap;
+        private string nextOperation;
 
         public MockHttpWebRequestFactory()
         {
@@ -46,17 +73,19 @@ namespace MirthConnectFX.Tests
         
         public IHttpWebRequest Create(Uri uri)
         {
-            return requestMap.ContainsKey(uri.AbsoluteUri) ? requestMap[uri.AbsoluteUri] : new MockHttpWebRequest();
+            return string.IsNullOrWhiteSpace(nextOperation) || !requestMap.ContainsKey(nextOperation) 
+                ? new MockHttpWebRequest() 
+                : requestMap[nextOperation];
         }
 
-        public void SetRequest(string url, IHttpWebRequest request)
+        public void AddRequest(string op, IHttpWebRequest request)
         {
-            requestMap.Add(url, request);
+            requestMap.Add(op, request);
         }
 
-        public IHttpWebRequest GetRequest(string channel)
+        public void SetNextOperation(string operation)
         {
-            return requestMap.ContainsKey(channel) ? requestMap[channel] : null;
+            nextOperation = operation;
         }
     }
 

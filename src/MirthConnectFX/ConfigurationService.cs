@@ -7,7 +7,7 @@
 
         public string GetVersion()
         {
-            var request = CreateRequest(Operations.Configuration.GetVerson);
+            var request = CreateRequest().ForOperation(Operations.Configuration.GetVerson);
             var response = request.Execute();
 
             return response.Content;

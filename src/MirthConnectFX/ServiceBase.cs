@@ -13,10 +13,9 @@
             ServicePath = servicePath;
         }
 
-        protected IMirthConnectRequest CreateRequest(string op)
+        protected IMirthConnectRequest CreateRequest()
         {
             var request = MirthConnectRequestFactory.Create(ServicePath);
-            request.AddPostData("op", op);
 
             if (!string.IsNullOrWhiteSpace(Session.SessionID))
                 request.AuthSessionId = Session.SessionID;

@@ -21,9 +21,9 @@ namespace MirthConnectFX.Tests
                                   </channelSummary>
                                 </list>";
             
-            WithExpectedRequest(Requests.Channels, responseXml);
+            WithExpectedRequest(Operations.Channels.GetChannelSummary, responseXml);
 
-            var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService();
             var summary = service.GetChannelSummary();
 
             summary.Should().NotBeEmpty();
@@ -37,15 +37,15 @@ namespace MirthConnectFX.Tests
             const string responseXml =
                 @"<list><channel><id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id><name>FX Test Channel</name></channel></list>";
 
-            WithExpectedRequest(Requests.Channels, responseXml);
+            WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
 
-            var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService();
             var channel = service.GetChannel(channelId);
 
             channel.Id.Should().Be(channelId);
             channel.Name.Should().Be("FX Test Channel");
 
-            var postData = ((MirthConnectRequest)RequestFactory.LastRequest).GetPostData();
+            var postData = RequestFactory.Requests.First().GetPostData();
 
             postData.ContainsKey("channel").Should().BeTrue();
             postData["channel"].Should().Contain("<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>");
@@ -54,11 +54,11 @@ namespace MirthConnectFX.Tests
         [Test]
         public void Update_ReturnsTrueOnSuccess()
         {
-            WithExpectedRequest(Requests.Channels, "true");
-            var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+            WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
+            var service = CreateService();
             service.Update(new Channel()).Should().BeTrue();
 
-            var postData = ((MirthConnectRequest)RequestFactory.LastRequest).GetPostData();
+            var postData = RequestFactory.Requests.First().GetPostData();
 
             postData.ContainsKey("channel").Should().BeTrue();
             postData["channel"].Should().Contain("<channel");
@@ -67,14 +67,19 @@ namespace MirthConnectFX.Tests
         [Test]
         public void Update_HandlesFailure()
         {
-            WithExpectedRequest(Requests.Channels, "error", true);
+            WithExpectedRequest(Operations.Channels.UpdateChannel, "error", true);
 
-            var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService();
 
             Action action = () => service.Update(new Channel());
             action.ShouldThrow<MirthConnectException>()
                 .WithMessage("Mirth returned error processing request")
                 .WithInnerException<WebException>();
+        }
+
+        private ChannelsService CreateService()
+        {
+            return new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
         }
     }
 }

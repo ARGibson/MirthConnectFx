@@ -9,7 +9,7 @@ namespace MirthConnectFX
         
         public IMirthConnectSession Login(string username, string password, string version)
         {
-            var request = CreateRequest(Operations.User.Login);
+            var request = CreateRequest().ForOperation(Operations.User.Login);
             request.AddPostData("username", username);
             request.AddPostData("password", password);
             request.AddPostData("version", version);

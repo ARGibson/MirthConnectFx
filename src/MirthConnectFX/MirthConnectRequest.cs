@@ -20,6 +20,12 @@ namespace MirthConnectFX
             this.postData = new Dictionary<string, string>();
         }
 
+        public virtual IMirthConnectRequest ForOperation(string operation)
+        {
+            AddPostData("op", operation);
+            return this;
+        }
+
         public IMirthConnectResponse Execute()
         {
             var data = PreparePostData();

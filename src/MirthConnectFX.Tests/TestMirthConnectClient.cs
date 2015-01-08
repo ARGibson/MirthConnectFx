@@ -13,7 +13,7 @@ namespace MirthConnectFX.Tests
                 .Create()
                 .WithRemoteRequestFactory(RequestFactory);
 
-            WithExpectedRequest(Requests.Users);
+            WithExpectedRequest(Operations.User.Login);
 
             var session = client.Login("username", "password", "version");
 
@@ -27,8 +27,8 @@ namespace MirthConnectFX.Tests
                 .Create()
                 .WithRemoteRequestFactory(RequestFactory);
 
-            WithExpectedRequest(Requests.Users);
-            WithExpectedRequest(Requests.Configuration, "2.2.1.5861");
+            WithExpectedRequest(Operations.User.Login);
+            WithExpectedRequest(Operations.Configuration.GetVerson, "2.2.1.5861");
 
             var session = client.Login("username", "password", "version");
             session.Version.Should().Be("2.2.1.5861");
