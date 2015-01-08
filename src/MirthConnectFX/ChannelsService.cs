@@ -19,7 +19,7 @@ namespace MirthConnectFX
         
         public IEnumerable<ChannelSummary> GetChannelSummary()
         {
-            var request = CreateRequest("getChannelSummary");
+            var request = CreateRequest(Operations.Channels.GetChannelSummary);
             request.AddPostData("cachedChannels", "<map/>");
 
             var response = request.Execute();
@@ -43,7 +43,7 @@ namespace MirthConnectFX
                 }
             }
 
-            var request = CreateRequest("updateChannel");
+            var request = CreateRequest(Operations.Channels.UpdateChannel);
             request.AddPostData("channel", channelXml);
             request.AddPostData("override", "true");
 
@@ -72,7 +72,7 @@ namespace MirthConnectFX
                 }
             }
 
-            var request = CreateRequest("getChannel");
+            var request = CreateRequest(Operations.Channels.GetChannel);
             request.AddPostData("channel", requestChannelXml);
 
             var response = request.Execute();

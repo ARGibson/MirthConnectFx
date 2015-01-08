@@ -70,6 +70,7 @@
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\Rule.cs" />
     <Compile Include="Model\Transformer.cs" />
+    <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MirthConnectResponse.cs" />
     <Compile Include="ServiceBase.cs" />
