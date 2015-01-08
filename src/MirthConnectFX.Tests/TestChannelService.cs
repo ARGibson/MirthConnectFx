@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using MirthConnectFX.Model;
+using MirthConnectFX.Utility;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -75,6 +76,23 @@ namespace MirthConnectFX.Tests
             action.ShouldThrow<MirthConnectException>()
                 .WithMessage("Mirth returned error processing request")
                 .WithInnerException<WebException>();
+        }
+
+        [Test]
+        public void Enable_EnablesChannel()
+        {
+            const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
+            const string responseXml =
+                @"<list><channel><id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id><enabled>false</enabled></channel></list>";
+            
+            WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
+            WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
+
+            var service = CreateService();
+            service.EnableChannel(channelId);
+
+            var postData = RequestFactory.Requests.First(x => x.Operation == Operations.Channels.UpdateChannel).GetPostData();
+            postData["channel"].Contains("<enabled>true</enabled>");
         }
 
         private ChannelsService CreateService()
