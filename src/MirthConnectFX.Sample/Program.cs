@@ -19,16 +19,19 @@ namespace MirthConnectFX.Sample
             Console.WriteLine(session.Version);
 
             var summary = client.Channels.GetChannelSummary();
-            Console.Write(summary);
+            foreach (var channelSummary in summary)
+                Console.WriteLine("{0}", channelSummary.Id);
 
             var channelFile = File.ReadAllText(@"..\..\..\..\lib\FX Test Channel.xml");
 
             var xmlSerializer = new XmlSerializer(typeof(Channel));
             var channel = (Channel)xmlSerializer.Deserialize(new StringReader(channelFile));
 
-            var result = client.Channels.Update(channel);
+            client.Channels.Update(channel);
 
-            client.Channels.Update(new Channel());
+            var channel2 = client.Channels.GetChannel("2b0a4fe9-98c7-44b3-8f66-732dc18a300b");
+
+            Console.WriteLine("{0} - {1} ({2})", channel2.Id, channel2.Name, channel2.Enabled);
 
             Console.Read();
         }

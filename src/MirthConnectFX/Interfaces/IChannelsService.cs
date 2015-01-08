@@ -7,5 +7,6 @@ namespace MirthConnectFX
     {
         IEnumerable<ChannelSummary> GetChannelSummary();
         bool Update(Channel channel);
+        Channel GetChannel(string channelId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml;
@@ -57,6 +58,33 @@ namespace MirthConnectFX
             {
                 throw new MirthConnectException("Mirth returned error processing request", ex);
             }
+        }
+
+        public Channel GetChannel(string channelId)
+        {
+            var requestChannel = new Channel {Id = channelId};
+            var requestChannelXml = string.Empty;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = XmlWriter.Create(stream))
+                {
+                    new XmlSerializer(requestChannel.GetType()).Serialize(writer, requestChannel);
+                    requestChannelXml = Encoding.UTF8.GetString(stream.ToArray());
+                }
+            }
+
+            var request = MirthConnectRequestFactory.Create("channels");
+            request.AuthSessionId = Session.SessionID;
+            request.AddPostData("op", "getChannel");
+            request.AddPostData("channel", requestChannelXml);
+
+            var response = request.Execute();
+
+            var xmlSerializer = new XmlSerializer(typeof(ChannelList));
+            var channelList = (ChannelList)xmlSerializer.Deserialize(new StringReader(response.Content));
+
+            return channelList.Channels.FirstOrDefault();
         }
     }
 }

@@ -1,4 +1,11 @@
-﻿namespace MirthConnectFX
+﻿using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+using MirthConnectFX.Model;
+
+namespace MirthConnectFX
 {
     public class ServiceBase
     {
