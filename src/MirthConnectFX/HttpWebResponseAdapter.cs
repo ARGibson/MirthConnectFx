@@ -13,6 +13,11 @@ namespace MirthConnectFX
             set { response.Cookies = value; }
         }
 
+        public HttpStatusCode StatusCode
+        {
+            get { return response.StatusCode; }
+        }
+
         public HttpWebResponseAdapter(HttpWebResponse response)
         {
             this.response = response;

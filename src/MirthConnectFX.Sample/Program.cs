@@ -28,6 +28,8 @@ namespace MirthConnectFX.Sample
 
             var result = client.Channels.Update(channel);
 
+            client.Channels.Update(new Channel());
+
             Console.Read();
         }
     }

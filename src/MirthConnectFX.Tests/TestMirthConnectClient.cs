@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Should;
+using FluentAssertions;
 
 namespace MirthConnectFX.Tests
 {
@@ -17,7 +17,7 @@ namespace MirthConnectFX.Tests
 
             var session = client.Login("username", "password", "version");
 
-            session.SessionID.ShouldEqual("12345");
+            session.SessionID.Should().Be("12345");
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace MirthConnectFX.Tests
             WithExpectedRequest(Requests.Configuration, "2.2.1.5861");
 
             var session = client.Login("username", "password", "version");
-            session.Version.ShouldEqual("2.2.1.5861");
+            session.Version.Should().Be("2.2.1.5861");
         }
     }
 }

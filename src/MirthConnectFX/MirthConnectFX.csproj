@@ -57,6 +57,7 @@
     <Compile Include="Interfaces\IMirthConnectResponse.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="MirthConnectClient.cs" />
+    <Compile Include="MirthConnectException.cs" />
     <Compile Include="MirthConnectRequest.cs" />
     <Compile Include="MirthConnectSession.cs" />
     <Compile Include="Model\Connector.cs" />

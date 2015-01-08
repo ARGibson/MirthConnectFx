@@ -7,5 +7,6 @@ namespace MirthConnectFX
     {
         CookieCollection Cookies { get; set; }
         Stream GetResponseStream();
+        HttpStatusCode StatusCode { get; }
     }
 }

@@ -94,8 +94,9 @@ namespace MirthConnectFX.Tests
     public class MockHttpWebResponse : IHttpWebResponse
     {
         private Stream responseStream;
-        
+
         public CookieCollection Cookies { get; set; }
+        public HttpStatusCode StatusCode { get; private set; }
 
         public MockHttpWebResponse()
         {
@@ -104,12 +105,20 @@ namespace MirthConnectFX.Tests
 
         public Stream GetResponseStream()
         {
+            if (StatusCode == HttpStatusCode.InternalServerError)
+                throw new WebException("The remote server returned an error: (500) Internal Server Error.");
+            
             return responseStream;
         }
-
+        
         public void SetResponseStream(Stream stream)
         {
             responseStream = stream;
+        }
+
+        public void SetStatusCode(HttpStatusCode statusCode)
+        {
+            StatusCode = statusCode;
         }
     }
 }

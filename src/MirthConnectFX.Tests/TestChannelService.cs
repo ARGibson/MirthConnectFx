@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
 using System.Linq;
+using System.Net;
 using MirthConnectFX.Model;
 using NUnit.Framework;
-using Should;
+using FluentAssertions;
 
 namespace MirthConnectFX.Tests
 {
@@ -25,8 +26,8 @@ namespace MirthConnectFX.Tests
             var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
             var summary = service.GetChannelSummary();
 
-            summary.ShouldNotBeEmpty();
-            summary.Any(x => x.Id == "0f2783ee-ced9-414c-8854-6840e74e8e21").ShouldBeTrue();
+            summary.Should().NotBeEmpty();
+            summary.Any(x => x.Id == "0f2783ee-ced9-414c-8854-6840e74e8e21").Should().BeTrue();
         }
 
         [Test]
@@ -34,12 +35,25 @@ namespace MirthConnectFX.Tests
         {
             WithExpectedRequest(Requests.Channels, "true");
             var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
-            service.Update(new Channel()).ShouldBeTrue();
+            service.Update(new Channel()).Should().BeTrue();
 
             var postData = ((MirthConnectRequest)RequestFactory.LastRequest).GetPostData();
 
-            postData.ContainsKey("channel").ShouldBeTrue();
-            postData["channel"].ShouldContain("<channel");
+            postData.ContainsKey("channel").Should().BeTrue();
+            postData["channel"].Should().Contain("<channel");
+        }
+
+        [Test]
+        public void Update_HandlesFailure()
+        {
+            WithExpectedRequest(Requests.Channels, "error", true);
+
+            var service = new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+
+            Action action = () => service.Update(new Channel());
+            action.ShouldThrow<MirthConnectException>()
+                .WithMessage("Mirth returned error processing request")
+                .WithInnerException<WebException>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -47,9 +48,15 @@ namespace MirthConnectFX
             request.AddPostData("channel", channelXml);
             request.AddPostData("override", "true");
 
-            var response = request.Execute();
-
-            return Boolean.Parse(response.Content);
+            try
+            {
+                var response = request.Execute();
+                return Boolean.Parse(response.Content);
+            }
+            catch (WebException ex)
+            {
+                throw new MirthConnectException("Mirth returned error processing request", ex);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MirthConnectFX.Tests
             AuthCookie = new Cookie("JSESSIONID", "12345", "/");
         }
 
-        public void WithExpectedRequest(string url, string responseText = null)
+        public void WithExpectedRequest(string url, string responseText = null, bool errorResponse = false)
         {
             var response = new MockHttpWebResponse();
             var request = new MockHttpWebRequest();
@@ -27,6 +27,9 @@ namespace MirthConnectFX.Tests
 
             if (responseText != null)
                 response.SetResponseStream(new MemoryStream(Encoding.UTF8.GetBytes(responseText)));
+
+            if (errorResponse)
+                response.SetStatusCode(HttpStatusCode.InternalServerError);
 
             request.SetResponse(response);
             
