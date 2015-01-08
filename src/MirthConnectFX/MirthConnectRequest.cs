@@ -9,7 +9,7 @@ namespace MirthConnectFX
     {
         private readonly IHttpWebRequestFactory httpRequestFactory;
         private readonly string url;
-        private IDictionary<string, string> postData;
+        private readonly IDictionary<string, string> postData;
 
         public string AuthSessionId { get; set; }
 
@@ -22,19 +22,19 @@ namespace MirthConnectFX
 
         public IMirthConnectResponse Execute()
         {
-            var postData = PreparePostData();
+            var data = PreparePostData();
             var httpRequest = httpRequestFactory.Create(new Uri(url));
 
             httpRequest.Method = "POST";
             httpRequest.ContentType = "application/x-www-form-urlencoded";
-            httpRequest.ContentLength = postData.Length;
+            httpRequest.ContentLength = data.Length;
             httpRequest.CookieContainer = new CookieContainer();
 
             IncludeAuthCookieIfAvailable(httpRequest);
 
             using (var dataStream = httpRequest.GetRequestStream())
             {
-                dataStream.Write(postData, 0, postData.Length);
+                dataStream.Write(data, 0, data.Length);
             }
 
             return new MirthConnectResponse(httpRequest.GetResponse());

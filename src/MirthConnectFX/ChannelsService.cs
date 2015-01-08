@@ -12,14 +12,14 @@ namespace MirthConnectFX
 {
     public class ChannelsService : ServiceBase, IChannelsService
     {
-        public ChannelsService(IMirthConnectRequestFactory mirthConnectRequestFactory, IMirthConnectSession session) 
-            : base(mirthConnectRequestFactory, session) {}
+        public ChannelsService(IMirthConnectRequestFactory mirthConnectRequestFactory, IMirthConnectSession session)
+            : base(mirthConnectRequestFactory, session, "channels")
+        {
+        }
         
         public IEnumerable<ChannelSummary> GetChannelSummary()
         {
-            var request = MirthConnectRequestFactory.Create("channels");
-            request.AuthSessionId = Session.SessionID;
-            request.AddPostData("op", "getChannelSummary");
+            var request = CreateRequest("getChannelSummary");
             request.AddPostData("cachedChannels", "<map/>");
 
             var response = request.Execute();
@@ -42,10 +42,8 @@ namespace MirthConnectFX
                     channelXml = Encoding.UTF8.GetString(stream.ToArray());
                 }
             }
-            
-            var request = MirthConnectRequestFactory.Create("channels");
-            request.AuthSessionId = Session.SessionID;
-            request.AddPostData("op", "updateChannel");
+
+            var request = CreateRequest("updateChannel");
             request.AddPostData("channel", channelXml);
             request.AddPostData("override", "true");
 
@@ -74,9 +72,7 @@ namespace MirthConnectFX
                 }
             }
 
-            var request = MirthConnectRequestFactory.Create("channels");
-            request.AuthSessionId = Session.SessionID;
-            request.AddPostData("op", "getChannel");
+            var request = CreateRequest("getChannel");
             request.AddPostData("channel", requestChannelXml);
 
             var response = request.Execute();
