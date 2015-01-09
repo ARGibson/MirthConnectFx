@@ -81,6 +81,23 @@ namespace MirthConnectFX.Tests
             postData["channel"].Contains("<enabled>true</enabled>");
         }
 
+        [Test]
+        public void Disable_DisablesChannel()
+        {
+            const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
+            const string responseXml =
+                @"<list><channel><id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id><enabled>true</enabled></channel></list>";
+
+            WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
+            WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
+
+            var service = CreateService();
+            service.DisableChannel(channelId);
+
+            var postData = RequestFactory.Requests.First(x => x.Operation == Operations.Channels.UpdateChannel).GetPostData();
+            postData["channel"].Contains("<enabled>false</enabled>");
+        }
+
         private ChannelsService CreateService()
         {
             return new ChannelsService(RequestFactory, new MirthConnectSession("12345"));

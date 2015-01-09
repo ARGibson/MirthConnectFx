@@ -9,5 +9,6 @@ namespace MirthConnectFX
         bool Update(Channel channel);
         Channel GetChannel(string channelId);
         void EnableChannel(string channelId);
+        void DisableChannel(string channelId);
     }
 }

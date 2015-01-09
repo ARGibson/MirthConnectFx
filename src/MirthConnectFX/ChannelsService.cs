@@ -55,5 +55,13 @@ namespace MirthConnectFX
 
             Update(channel);
         }
+
+        public void DisableChannel(string channelId)
+        {
+            var channel = GetChannel(channelId);
+            channel.Enabled = false;
+
+            Update(channel);
+        }
     }
 }
