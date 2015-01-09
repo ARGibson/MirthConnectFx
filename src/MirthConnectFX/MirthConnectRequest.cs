@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 
@@ -43,7 +44,20 @@ namespace MirthConnectFX
                 dataStream.Write(data, 0, data.Length);
             }
 
-            return new MirthConnectResponse(httpRequest.GetResponse());
+            try
+            {
+                return new MirthConnectResponse(httpRequest.GetResponse());
+            }
+            catch (WebException ex)
+            {
+                var error = string.Empty;
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    error = reader.ReadToEnd();
+                }
+
+                throw new MirthConnectException("Mirth returned error processing request", error, ex);
+            }
         }
 
         public void AddPostData(string key, string value)

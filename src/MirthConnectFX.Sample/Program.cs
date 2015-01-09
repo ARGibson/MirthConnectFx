@@ -12,7 +12,7 @@ namespace MirthConnectFX.Sample
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) => true;
 
-            var client = MirthConnectClient.Create("https://localhost:8443/");
+            var client = MirthConnectClient.Create("https://luna:8443/");
             
             var session = client.Login("admin", "admin", "0.0.0");
             Console.WriteLine(session.SessionID);
