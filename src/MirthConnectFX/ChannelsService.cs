@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using MirthConnectFX.Model;
 using MirthConnectFX.Utility;
 
@@ -33,15 +32,8 @@ namespace MirthConnectFX
             request.AddPostData("channel", channelXml);
             request.AddPostData("override", "true");
 
-            try
-            {
-                var response = request.Execute();
-                return Boolean.Parse(response.Content);
-            }
-            catch (WebException ex)
-            {
-                throw new MirthConnectException("Mirth returned error processing request", ex);
-            }
+            var response = request.Execute();
+            return Boolean.Parse(response.Content);
         }
 
         public Channel GetChannel(string channelId)

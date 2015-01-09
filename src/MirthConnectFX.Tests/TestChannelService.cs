@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using MirthConnectFX.Model;
-using MirthConnectFX.Utility;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -63,19 +62,6 @@ namespace MirthConnectFX.Tests
 
             postData.ContainsKey("channel").Should().BeTrue();
             postData["channel"].Should().Contain("<channel");
-        }
-
-        [Test]
-        public void Update_HandlesFailure()
-        {
-            WithExpectedRequest(Operations.Channels.UpdateChannel, "error", true);
-
-            var service = CreateService();
-
-            Action action = () => service.Update(new Channel());
-            action.ShouldThrow<MirthConnectException>()
-                .WithMessage("Mirth returned error processing request")
-                .WithInnerException<WebException>();
         }
 
         [Test]

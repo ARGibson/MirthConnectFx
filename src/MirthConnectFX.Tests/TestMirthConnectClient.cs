@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Net;
+using NUnit.Framework;
 using FluentAssertions;
 
 namespace MirthConnectFX.Tests
@@ -32,6 +34,21 @@ namespace MirthConnectFX.Tests
 
             var session = client.Login("username", "password", "version");
             session.Version.Should().Be("2.2.1.5861");
+        }
+
+        [Test]
+        public void MirthConnectClient_ShouldHandleServerError()
+        {
+            var client = MirthConnectClient
+                .Create()
+                .WithRemoteRequestFactory(RequestFactory);
+
+            WithExpectedRequest(Operations.Configuration.GetVerson, "ERROR", true);
+
+            Action action = () => client.Configuration.GetVersion();
+            action.ShouldThrow<MirthConnectException>()
+                .WithMessage("Mirth returned error processing request")
+                .WithInnerException<WebException>();
         }
     }
 }

@@ -20,9 +20,16 @@ namespace MirthConnectFX
             if (httpWebResponse.Cookies != null)
                 Cookies = httpWebResponse.Cookies.Cast<Cookie>().ToList();
 
-            using (var reader = new StreamReader(httpWebResponse.GetResponseStream()))
+            try
             {
-                Content = reader.ReadToEnd();
+                using (var reader = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    Content = reader.ReadToEnd();
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new MirthConnectException("Mirth returned error processing request", ex);
             }
         }
     }
