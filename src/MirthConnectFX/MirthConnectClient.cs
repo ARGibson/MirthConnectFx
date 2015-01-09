@@ -9,15 +9,15 @@
         public IUserService          Users          { get { return new UsersService(mirthConnectRequestFactory); } }
         public IChannelsService      Channels       { get { return new ChannelsService(mirthConnectRequestFactory, session); }}
 
-        public MirthConnectClient()
+        protected MirthConnectClient(string baseUrl)
         {
-            WithRemoteRequestFactory(new DefaultMirthConnectRequestFactory());
+            WithRemoteRequestFactory(new DefaultMirthConnectRequestFactory(baseUrl));
             WithSession(new MirthConnectSession(string.Empty));
         }
 
-        public static IMirthConnectClient Create()
+        public static IMirthConnectClient Create(string baseUrl)
         {
-            return new MirthConnectClient();
+            return new MirthConnectClient(baseUrl);
         }
 
         public IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory mirthConnectRequestFactory)

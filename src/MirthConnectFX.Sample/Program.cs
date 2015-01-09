@@ -11,8 +11,8 @@ namespace MirthConnectFX.Sample
         static void Main(string[] args)
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) => true;
-            
-            var client = new MirthConnectClient();
+
+            var client = MirthConnectClient.Create("https://localhost:8443/");
             
             var session = client.Login("admin", "admin", "0.0.0");
             Console.WriteLine(session.SessionID);

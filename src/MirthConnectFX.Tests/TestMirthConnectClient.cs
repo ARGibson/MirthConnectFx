@@ -12,7 +12,7 @@ namespace MirthConnectFX.Tests
         public void MirthConnectClient_CanLogin()
         {            
             var client = MirthConnectClient
-                .Create()
+                .Create("https://localhost:8443")
                 .WithRemoteRequestFactory(RequestFactory);
 
             WithExpectedRequest(Operations.User.Login);
@@ -26,7 +26,7 @@ namespace MirthConnectFX.Tests
         public void MirthConnectClient_Login_GetsVersion()
         {
             var client = MirthConnectClient
-                .Create()
+                .Create("https://localhost:8443")
                 .WithRemoteRequestFactory(RequestFactory);
 
             WithExpectedRequest(Operations.User.Login);
@@ -40,7 +40,7 @@ namespace MirthConnectFX.Tests
         public void MirthConnectClient_ShouldHandleServerError()
         {
             var client = MirthConnectClient
-                .Create()
+                .Create("https://localhost:8443")
                 .WithRemoteRequestFactory(RequestFactory);
 
             WithExpectedRequest(Operations.Configuration.GetVerson, "ERROR", true);

@@ -2,12 +2,25 @@
 {
     public class DefaultMirthConnectRequestFactory : IMirthConnectRequestFactory
     {
-        private const string BaseUrl = "https://localhost:8443/";
+        private string baseUrl;
+
+        protected string BaseUrl
+        {
+            get { return baseUrl; }
+            private set
+            {
+                baseUrl = value;
+
+                if (!baseUrl.EndsWith("/"))
+                    baseUrl = string.Concat(baseUrl, "/");
+            }
+        }
 
         protected IHttpWebRequestFactory HttpWebRequestFactory { get; set; }
 
-        public DefaultMirthConnectRequestFactory()
+        public DefaultMirthConnectRequestFactory(string baseUrl)
         {
+            BaseUrl = baseUrl;
             HttpWebRequestFactory = new HttpWebRequestFactory();
         }
         

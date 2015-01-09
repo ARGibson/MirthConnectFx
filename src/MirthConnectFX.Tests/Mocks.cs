@@ -7,8 +7,6 @@ namespace MirthConnectFX.Tests
 {
     public class MockMirthConnectRequestFactory : DefaultMirthConnectRequestFactory
     {
-        private const string BaseUrl = "https://localhost:8443/";
-
         public IList<MockMirthConnectRequest> Requests { get; private set; }
         
         public MockHttpWebRequestFactory MockHttpFactory 
@@ -16,7 +14,7 @@ namespace MirthConnectFX.Tests
             get { return (MockHttpWebRequestFactory) HttpWebRequestFactory; } 
         }
 
-        public MockMirthConnectRequestFactory()
+        public MockMirthConnectRequestFactory() : base("https://localhost:8443")
         {
             Requests = new List<MockMirthConnectRequest>();
         }
