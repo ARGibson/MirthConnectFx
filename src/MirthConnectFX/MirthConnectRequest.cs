@@ -50,13 +50,18 @@ namespace MirthConnectFX
             }
             catch (WebException ex)
             {
-                var error = string.Empty;
+                const string message = "Mirth returned error processing request";
+                var remoteError = string.Empty;
+                
+                if (ex.Response == null)
+                    throw new MirthConnectException(message, remoteError, ex);
+
                 using (var reader = new StreamReader(ex.Response.GetResponseStream()))
                 {
-                    error = reader.ReadToEnd();
+                    remoteError = reader.ReadToEnd();
                 }
 
-                throw new MirthConnectException("Mirth returned error processing request", error, ex);
+                throw new MirthConnectException(message, remoteError, ex);
             }
         }
 

@@ -63,6 +63,7 @@
     <Compile Include="MirthConnectException.cs" />
     <Compile Include="MirthConnectRequest.cs" />
     <Compile Include="MirthConnectSession.cs" />
+    <Compile Include="MirthVersionException.cs" />
     <Compile Include="Model\Connector.cs" />
     <Compile Include="Model\Entry.cs" />
     <Compile Include="Model\Filter.cs" />

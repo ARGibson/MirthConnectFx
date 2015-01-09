@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using MirthConnectFX.Model;
@@ -49,6 +50,27 @@ namespace MirthConnectFX.Tests
 
             postData.ContainsKey("channel").Should().BeTrue();
             postData["channel"].Should().Contain("<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>");
+        }
+
+        [Test]
+        public void GetChannels_ReturnsChannel()
+        {
+            const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
+            const string responseXml =
+                @"<list><channel><id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id><name>FX Test Channel</name></channel></list>";
+
+            WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
+
+            var service = CreateService();
+            var channel = service.GetChannels(new List<string> { channelId }).First();
+
+            channel.Id.Should().Be(channelId);
+            channel.Name.Should().Be("FX Test Channel");
+
+            var postData = RequestFactory.Requests.First().GetPostData();
+
+            postData.ContainsKey("channelIds").Should().BeTrue();
+            postData["channelIds"].Should().Contain("<string>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</string>");
         }
 
         [Test]
