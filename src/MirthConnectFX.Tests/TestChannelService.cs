@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using FluentAssertions;
 using MirthConnectFX.Model;
 using NUnit.Framework;
-using FluentAssertions;
 
 namespace MirthConnectFX.Tests
 {
@@ -31,8 +29,10 @@ namespace MirthConnectFX.Tests
             summary.Any(x => x.Id == "0f2783ee-ced9-414c-8854-6840e74e8e21").Should().BeTrue();
         }
 
-        [Test]
-        public void GetChannel_ReturnsChannel()
+        [TestCase(null)]
+        [TestCase("2.2.1.5861")]
+        [TestCase("3.1.1.7461")]
+        public void GetChannel_ReturnsChannel(string version)
         {
             const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
             const string responseXml =
@@ -40,7 +40,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
 
-            var service = CreateService();
+            var service = CreateService(version);
             var channel = service.GetChannel(channelId);
 
             channel.Id.Should().Be(channelId);
@@ -52,8 +52,10 @@ namespace MirthConnectFX.Tests
             postData["channel"].Should().Contain("<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>");
         }
 
-        [Test]
-        public void GetChannels_ReturnsChannel()
+        [TestCase(null)]
+        [TestCase("2.2.1.5861")]
+        [TestCase("3.1.1.7461")]
+        public void GetChannels_ReturnsChannel(string version)
         {
             const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
             const string responseXml =
@@ -61,7 +63,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
 
-            var service = CreateService();
+            var service = CreateService(version);
             var channel = service.GetChannels(new List<string> { channelId }).First();
 
             channel.Id.Should().Be(channelId);
@@ -120,9 +122,9 @@ namespace MirthConnectFX.Tests
             postData["channel"].Contains("<enabled>false</enabled>");
         }
 
-        private ChannelsService CreateService()
+        private ChannelsService CreateService(string version = null)
         {
-            return new ChannelsService(RequestFactory, new MirthConnectSession("12345"));
+            return new ChannelsService(RequestFactory, new MirthConnectSession("12345") { Version = version});
         }
     }
 }

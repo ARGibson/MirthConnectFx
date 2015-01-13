@@ -39,8 +39,8 @@ namespace MirthConnectFX
 
         public Channel GetChannel(string channelId)
         {
-            //if (Session.Version.StartsWith("3."))
-            //    throw new MirthVersionException("ChannelService.GetChannel cannot be used with Mirth 3.x and above, use ChannelService.GetChannels");
+            if (Session.IsMirthVersion(MirthBaseVersion.V3x))
+                return GetChannels(new[] {channelId}).FirstOrDefault();
             
             var channel = new Channel {Id = channelId}.ToXml();
             var request = CreateRequest().ForOperation(Operations.Channels.GetChannel);
@@ -54,6 +54,9 @@ namespace MirthConnectFX
 
         public IEnumerable<Channel> GetChannels(IEnumerable<string> channelIds)
         {
+            if (Session.IsMirthVersion(MirthBaseVersion.V2x))
+                return channelIds.Select(GetChannel).ToList();
+
             var xml = new StringBuilder("<set>");
             foreach (var channelId in channelIds)
                 xml.AppendFormat("<string>{0}</string>", channelId);

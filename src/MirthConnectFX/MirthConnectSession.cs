@@ -9,5 +9,10 @@
         {
             SessionID = sessionId;
         }
+
+        public bool IsMirthVersion(MirthBaseVersion version)
+        {
+            return !string.IsNullOrWhiteSpace(Version) && Version.StartsWith(((int)version).ToString());
+        }
     }
 }
