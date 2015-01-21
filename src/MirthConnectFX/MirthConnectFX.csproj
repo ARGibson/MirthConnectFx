@@ -46,12 +46,14 @@
     <Compile Include="ChannelStatusService.cs" />
     <Compile Include="ConfigurationService.cs" />
     <Compile Include="DefaultMirthConnectRequestFactory.cs" />
+    <Compile Include="EngineService.cs" />
     <Compile Include="HttpWebRequestAdapter.cs" />
     <Compile Include="HttpWebRequestFactory.cs" />
     <Compile Include="HttpWebResponseAdapter.cs" />
     <Compile Include="Interfaces\IChannelStatusService.cs" />
     <Compile Include="Interfaces\IChannelsService.cs" />
     <Compile Include="Interfaces\IConfigurationService.cs" />
+    <Compile Include="Interfaces\IEngineService.cs" />
     <Compile Include="Interfaces\IHttpWebRequest.cs" />
     <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
     <Compile Include="Interfaces\IHttpWebResponse.cs" />

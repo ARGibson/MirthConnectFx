@@ -58,6 +58,7 @@
     <Compile Include="TestChannelService.cs" />
     <Compile Include="TestChannelStatusService.cs" />
     <Compile Include="TestContext.cs" />
+    <Compile Include="TestEngineService.cs" />
     <Compile Include="TestMirthConnectClient.cs" />
   </ItemGroup>
   <ItemGroup>

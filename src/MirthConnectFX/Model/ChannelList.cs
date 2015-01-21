@@ -10,6 +10,8 @@ namespace MirthConnectFX.Model
         public ChannelList()
         {
             Channels = new List<Channel>();
+            ChannelSummaries = new List<ChannelSummary>();
+            ChannelStatuses = new List<ChannelStatus>();
         }
 
         [XmlElement("channel")]

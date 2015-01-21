@@ -25,5 +25,10 @@
             public static string StartChannel { get { return "startChannel"; } }
             public static string GetChannelStatus { get { return "getChannelStatusList"; } }
         }
+
+        public static class Engine
+        {
+            public static string DeployChannels { get { return "deployChannels"; } }
+        }
     }
 }
