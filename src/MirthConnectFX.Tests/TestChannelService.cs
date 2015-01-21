@@ -29,10 +29,10 @@ namespace MirthConnectFX.Tests
             summary.Any(x => x.Id == "0f2783ee-ced9-414c-8854-6840e74e8e21").Should().BeTrue();
         }
 
-        [TestCase(null)]
-        [TestCase("2.2.1.5861")]
-        [TestCase("3.1.1.7461")]
-        public void GetChannel_ReturnsChannel(string version)
+        [TestCase(null, "channel", "<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>")]
+        [TestCase("2.2.1.5861", "channel", "<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>")]
+        [TestCase("3.1.1.7461", "channelIds", "<set><string>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</string></set>")]
+        public void GetChannel_ReturnsChannel(string version, string postDataKey, string postDataValue)
         {
             const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
             const string responseXml =
@@ -48,14 +48,14 @@ namespace MirthConnectFX.Tests
 
             var postData = RequestFactory.Requests.First().GetPostData();
 
-            postData.ContainsKey("channel").Should().BeTrue();
-            postData["channel"].Should().Contain("<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>");
+            postData.ContainsKey(postDataKey).Should().BeTrue();
+            postData[postDataKey].Should().Contain(postDataValue);
         }
 
-        [TestCase(null)]
-        [TestCase("2.2.1.5861")]
-        [TestCase("3.1.1.7461")]
-        public void GetChannels_ReturnsChannel(string version)
+        [TestCase(null, "channelIds", "<string>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</string></set>")]
+        [TestCase("2.2.1.5861", "channel", "<id>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</id>")]
+        [TestCase("3.1.1.7461", "channelIds", "<string>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</string></set>")]
+        public void GetChannels_ReturnsChannel(string version, string postDataKey, string postDataValue)
         {
             const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
             const string responseXml =
@@ -71,8 +71,8 @@ namespace MirthConnectFX.Tests
 
             var postData = RequestFactory.Requests.First().GetPostData();
 
-            postData.ContainsKey("channelIds").Should().BeTrue();
-            postData["channelIds"].Should().Contain("<string>2b0a4fe9-98c7-44b3-8f66-732dc18a300b</string>");
+            postData.ContainsKey(postDataKey).Should().BeTrue();
+            postData[postDataKey].Should().Contain(postDataValue);
         }
 
         [Test]

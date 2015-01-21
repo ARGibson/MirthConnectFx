@@ -25,5 +25,15 @@ namespace MirthConnectFX
         protected MirthConnectException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            info.AddValue("MirthError", MirthError);
+        }
     }
 }

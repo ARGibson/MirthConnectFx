@@ -9,13 +9,11 @@ namespace MirthConnectFX.Utility
     {
         public static string ToXml(this object source)
         {
-            using (var stream = new MemoryStream())
+            var stream = new MemoryStream();
+            using (var writer = XmlWriter.Create(stream))
             {
-                using (var writer = XmlWriter.Create(stream))
-                {
-                    new XmlSerializer(source.GetType()).Serialize(writer, source);
-                    return Encoding.UTF8.GetString(stream.ToArray());
-                }
+                new XmlSerializer(source.GetType()).Serialize(writer, source);
+                return Encoding.UTF8.GetString(stream.ToArray());
             }
         }
 
