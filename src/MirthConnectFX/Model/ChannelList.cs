@@ -17,5 +17,8 @@ namespace MirthConnectFX.Model
 
         [XmlElement("channelSummary")]
         public List<ChannelSummary> ChannelSummaries { get; set; }
+
+        [XmlElement("channelStatus")]
+        public List<ChannelStatus> ChannelStatuses { get; set; } 
     }
 }

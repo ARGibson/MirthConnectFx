@@ -38,6 +38,7 @@ namespace MirthConnectFX.Sample
             Console.WriteLine("{0} - {1} (Enabled: {2})", channel.Id, channel.Name, channel.Enabled);
 
             client.ChannelStatus.StopChannel("2b0a4fe9-98c7-44b3-8f66-732dc18a300b");
+            client.ChannelStatus.StartChannel("2b0a4fe9-98c7-44b3-8f66-732dc18a300b");
 
             Console.Read();
         }
