@@ -18,5 +18,10 @@
             public static string GetChannel { get { return "getChannel"; } }
             public static string UpdateChannel { get { return "updateChannel"; } }
         }
+
+        public static class ChannelStatus
+        {
+            public static string StopChannel { get { return "stopChannel"; } }
+        }
     }
 }
