@@ -20,7 +20,7 @@ namespace MirthConnectFX.Tests
             var postData = RequestFactory.Requests.First().GetPostData();
 
             postData.ContainsKey("channelIds").Should().BeTrue();
-            postData["channelIds"].Should().Contain(channelId);
+            postData["channelIds"].Should().Contain(string.Format("<list><string>{0}</string></list>", channelId));
         }
     }
 }
