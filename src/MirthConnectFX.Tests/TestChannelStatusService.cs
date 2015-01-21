@@ -13,7 +13,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.ChannelStatus.StopChannel);
 
-            var service = new ChannelStatusService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService<ChannelStatusService, IChannelStatusService>();
             service.StopChannel(channelId);
 
             var postData = RequestFactory.Requests.First().GetPostData();
@@ -29,7 +29,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.ChannelStatus.StartChannel);
 
-            var service = new ChannelStatusService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService<ChannelStatusService, IChannelStatusService>();
             service.StartChannel(channelId);
 
             var postData = RequestFactory.Requests.First().GetPostData();
@@ -56,7 +56,7 @@ namespace MirthConnectFX.Tests
             
             WithExpectedRequest(Operations.ChannelStatus.GetChannelStatus, responseXml);
 
-            var service = new ChannelStatusService(RequestFactory, new MirthConnectSession("12345"));
+            var service = CreateService<ChannelStatusService, IChannelStatusService>();
             var status = service.GetChannelStatus().First();
 
             status.ChannelId.Should().Be("2b0a4fe9-98c7-44b3-8f66-732dc18a300b");

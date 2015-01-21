@@ -49,7 +49,7 @@
     <Compile Include="HttpWebRequestAdapter.cs" />
     <Compile Include="HttpWebRequestFactory.cs" />
     <Compile Include="HttpWebResponseAdapter.cs" />
-    <Compile Include="IChannelStatusService.cs" />
+    <Compile Include="Interfaces\IChannelStatusService.cs" />
     <Compile Include="Interfaces\IChannelsService.cs" />
     <Compile Include="Interfaces\IConfigurationService.cs" />
     <Compile Include="Interfaces\IHttpWebRequest.cs" />

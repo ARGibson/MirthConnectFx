@@ -22,7 +22,7 @@ namespace MirthConnectFX.Tests
             
             WithExpectedRequest(Operations.Channels.GetChannelSummary, responseXml);
 
-            var service = CreateService();
+            var service = CreateService<ChannelsService, IChannelsService>();
             var summary = service.GetChannelSummary();
 
             summary.Should().NotBeEmpty();
@@ -40,7 +40,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
 
-            var service = CreateService(version);
+            var service = CreateService<ChannelsService, IChannelsService>(version);
             var channel = service.GetChannel(channelId);
 
             channel.Id.Should().Be(channelId);
@@ -63,7 +63,7 @@ namespace MirthConnectFX.Tests
 
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
 
-            var service = CreateService(version);
+            var service = CreateService<ChannelsService, IChannelsService>(version);
             var channel = service.GetChannels(new List<string> { channelId }).First();
 
             channel.Id.Should().Be(channelId);
@@ -79,7 +79,7 @@ namespace MirthConnectFX.Tests
         public void Update_ReturnsTrueOnSuccess()
         {
             WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
-            var service = CreateService();
+            var service = CreateService<ChannelsService, IChannelsService>();
             service.Update(new Channel()).Should().BeTrue();
 
             var postData = RequestFactory.Requests.First().GetPostData();
@@ -98,7 +98,7 @@ namespace MirthConnectFX.Tests
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
             WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
 
-            var service = CreateService();
+            var service = CreateService<ChannelsService, IChannelsService>();
             service.EnableChannel(channelId);
 
             var postData = RequestFactory.Requests.First(x => x.Operation == Operations.Channels.UpdateChannel).GetPostData();
@@ -115,16 +115,11 @@ namespace MirthConnectFX.Tests
             WithExpectedRequest(Operations.Channels.GetChannel, responseXml);
             WithExpectedRequest(Operations.Channels.UpdateChannel, "true");
 
-            var service = CreateService();
+            var service = CreateService<ChannelsService, IChannelsService>();
             service.DisableChannel(channelId);
 
             var postData = RequestFactory.Requests.First(x => x.Operation == Operations.Channels.UpdateChannel).GetPostData();
             postData["channel"].Contains("<enabled>false</enabled>");
-        }
-
-        private ChannelsService CreateService(string version = null)
-        {
-            return new ChannelsService(RequestFactory, new MirthConnectSession("12345") { Version = version});
         }
     }
 }

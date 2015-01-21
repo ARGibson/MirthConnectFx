@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -18,7 +19,7 @@ namespace MirthConnectFX.Tests
             AuthCookie = new Cookie("JSESSIONID", "12345", "/");
         }
 
-        public void WithExpectedRequest(string op, string responseText = null, bool errorResponse = false)
+        protected void WithExpectedRequest(string op, string responseText = null, bool errorResponse = false)
         {
             var response = new MockHttpWebResponse();
             var request = new MockHttpWebRequest();
@@ -34,6 +35,15 @@ namespace MirthConnectFX.Tests
             request.SetResponse(response);
             
             RequestFactory.AddRequest(op, request);
+        }
+
+        protected TServiceInterface CreateService<TService, TServiceInterface>(string version = null) 
+            where TService : ServiceBase
+        {
+            var session = new MirthConnectSession("12345") {Version = version};
+            var service = Activator.CreateInstance(typeof (TService), new object[] {RequestFactory, session}, null);
+
+            return (TServiceInterface) service;
         }
     }
 }
