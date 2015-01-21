@@ -29,6 +29,7 @@
         public static class Engine
         {
             public static string DeployChannels { get { return "deployChannels"; } }
+            public static string UndeplyChannels { get { return "undeployChannels"; } }
         }
     }
 }

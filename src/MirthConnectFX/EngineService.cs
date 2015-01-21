@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Text;
+using MirthConnectFX.Utility;
 
 namespace MirthConnectFX
 {
@@ -10,18 +10,19 @@ namespace MirthConnectFX
         {
         }
 
-        public void DeployChannel(IEnumerable<string> channelIds)
+        public void DeployChannels(IEnumerable<string> channelIds)
         {
             var request = CreateRequest().ForOperation(Operations.Engine.DeployChannels);
+            
+            request.AddPostData("channelIds", channelIds.ToXmlCollection());
+            request.Execute();
+        }
 
-            var sb = new StringBuilder("<list>");
-            foreach (var channelId in channelIds)
-                sb.AppendFormat("<string>{0}</string>", channelId);
-
-            sb.Append("</list>");
-
-            request.AddPostData("channelIds", sb.ToString());
-
+        public void UndeployChannels(IEnumerable<string> channelIds)
+        {
+            var request = CreateRequest().ForOperation(Operations.Engine.UndeplyChannels);
+            
+            request.AddPostData("channelIds", channelIds.ToXmlCollection());
             request.Execute();
         }
     }

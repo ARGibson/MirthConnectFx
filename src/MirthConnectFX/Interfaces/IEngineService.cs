@@ -4,6 +4,7 @@ namespace MirthConnectFX
 {
     public interface IEngineService
     {
-        void DeployChannel(IEnumerable<string> list);
+        void DeployChannels(IEnumerable<string> channelIds);
+        void UndeployChannels(IEnumerable<string> channelIds);
     }
 }

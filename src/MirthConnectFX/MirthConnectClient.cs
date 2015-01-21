@@ -9,6 +9,7 @@
         public IUserService          Users          { get { return new UsersService(mirthConnectRequestFactory); } }
         public IChannelsService      Channels       { get { return new ChannelsService(mirthConnectRequestFactory, session); }}
         public IChannelStatusService ChannelStatus  { get { return new ChannelStatusService(mirthConnectRequestFactory, session); }}
+        public IEngineService        Engine         { get { return new EngineService(mirthConnectRequestFactory, session); }}
 
         protected MirthConnectClient(string baseUrl)
         {

@@ -13,7 +13,7 @@ namespace MirthConnectFX.Sample
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) => true;
 
-            var channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
+            const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
             var client = MirthConnectClient.Create("https://localhost:8443/");
             
             var session = client.Login("admin", "admin", "0.0.0");
@@ -33,11 +33,16 @@ namespace MirthConnectFX.Sample
             channel = client.Channels.GetChannel(channelId);
             Console.WriteLine("{0} - {1} (Enabled: {2})", channel.Id, channel.Name, channel.Enabled);
 
+            client.Engine.DeployChannels(new[] { channelId });
+            DisplayChannelStatus(client, channelId);
+
             client.ChannelStatus.StopChannel(channelId);
             DisplayChannelStatus(client, channelId);
 
             client.ChannelStatus.StartChannel(channelId);
             DisplayChannelStatus(client, channelId);
+
+            client.Engine.UndeployChannels(new[] { channelId });
 
             Console.Read();
         }

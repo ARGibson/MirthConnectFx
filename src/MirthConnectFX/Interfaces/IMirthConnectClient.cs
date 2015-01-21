@@ -6,6 +6,7 @@ namespace MirthConnectFX
         IUserService            Users           { get; }
         IChannelsService        Channels        { get; }
         IChannelStatusService   ChannelStatus   { get; }
+        IEngineService Engine { get; }
 
         IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory);
         IMirthConnectClient WithSession(IMirthConnectSession session);

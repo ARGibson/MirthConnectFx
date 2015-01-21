@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MirthConnectFX.Model;
 using MirthConnectFX.Utility;
 
@@ -57,14 +56,8 @@ namespace MirthConnectFX
             if (Session.IsMirthVersion(MirthBaseVersion.V2x))
                 return channelIds.Select(GetChannel).ToList();
 
-            var xml = new StringBuilder("<set>");
-            foreach (var channelId in channelIds)
-                xml.AppendFormat("<string>{0}</string>", channelId);
-
-            xml.Append("</set>");
-
             var request = CreateRequest().ForOperation(Operations.Channels.GetChannel);
-            request.AddPostData("channelIds", xml.ToString());
+            request.AddPostData("channelIds", channelIds.ToXmlCollection("set"));
 
             var response = request.Execute();
             return response.Content.ToObject<ChannelList>().Channels;

@@ -20,7 +20,7 @@
       <property name="checkFileAge">1</property>
       <property name="fileAge">1000</property>
       <property name="fileFilter">*.test</property>
-      <property name="host">C:/</property>
+      <property name="host">C:/Users</property>
       <property name="ignoreDot">1</property>
       <property name="moveToDirectory"></property>
       <property name="moveToErrorDirectory"></property>
