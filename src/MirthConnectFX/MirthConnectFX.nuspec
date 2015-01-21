@@ -7,8 +7,6 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://www.gnu.org/licenses/agpl.txt</licenseUrl>
-    <projectUrl />
-    <iconUrl />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial Release</releaseNotes>
