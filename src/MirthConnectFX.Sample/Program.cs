@@ -14,7 +14,7 @@ namespace MirthConnectFX.Sample
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, errors) => true;
 
             const string channelId = "2b0a4fe9-98c7-44b3-8f66-732dc18a300b";
-            var client = MirthConnectClient.Create("https://localhost:8443/");
+            var client = MirthConnectClient.Create("https://eml066:443/");
             
             var session = client.Login("admin", "admin", "0.0.0");
             Console.WriteLine("Session Id: {0}, Version: {1}", session.SessionID, session.Version);

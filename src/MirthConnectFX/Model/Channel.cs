@@ -20,6 +20,12 @@ namespace MirthConnectFX.Model
         public MirthDateTime     LastModified           { get; set; }
         [XmlElement("revision")]
         public string            Revision               { get; set; }
+        [XmlElement("sourceConnector")]
+        public Connector         SourceConnector { get; set; }
+        [XmlArray("destinationConnectors"), XmlArrayItem("connector")]
+        public Connector[]       DestinationConnectors  { get; set; }
+        [XmlArray("properties"), XmlArrayItem("property")]
+        public Property[]        Properties             { get; set; }
         [XmlElement("preprocessingScript")]
         public string            PreprocessingScript    { get; set; }
         [XmlElement("postprocessingScript")]
@@ -28,11 +34,5 @@ namespace MirthConnectFX.Model
         public string            DeployScript           { get; set; }
         [XmlElement("shutdownScript")]
         public string            ShutdownScript         { get; set; }
-        [XmlElement("sourceConnector")]
-        public Connector         SourceConnector { get; set; }
-        [XmlArray("destinationConnectors"), XmlArrayItem("connector")]
-        public Connector[]       DestinationConnectors  { get; set; }
-        [XmlArray("properties"), XmlArrayItem("property")]
-        public Property[]        Properties             { get; set; }
     }
 }

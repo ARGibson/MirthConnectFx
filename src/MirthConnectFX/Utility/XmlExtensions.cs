@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -12,10 +11,19 @@ namespace MirthConnectFX.Utility
         public static string ToXml(this object source)
         {
             var stream = new MemoryStream();
-            using (var writer = XmlWriter.Create(stream))
+            var settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true,
+                ConformanceLevel = ConformanceLevel.Auto,
+                Indent = true
+            };
+
+            using (var writer = XmlTextWriter.Create(stream, settings))
             {
                 new XmlSerializer(source.GetType()).Serialize(writer, source);
-                return Encoding.UTF8.GetString(stream.ToArray());
+                var output = Encoding.UTF8.GetString(stream.ToArray());
+
+                return output.Replace("﻿<?xml version=\"1.0\" encoding=\"utf-8\"?>", string.Empty);
             }
         }
 
@@ -34,6 +42,24 @@ namespace MirthConnectFX.Utility
         {
             var xmlSerializer = new XmlSerializer(typeof(TOutput));
             return (TOutput)xmlSerializer.Deserialize(new StringReader(source));
+        }
+    }
+
+    public class MirthXmlTextWriter : XmlTextWriter
+    {
+        public MirthXmlTextWriter(Stream stream) : base(stream, Encoding.UTF8)
+        {
+
+        }
+
+        public static XmlWriter CreateWriter(Stream stream, XmlWriterSettings settings)
+        {
+            return Create(new MirthXmlTextWriter(stream), settings);
+        }
+
+        public override void WriteEndElement()
+        {
+            base.WriteFullEndElement();
         }
     }
 }

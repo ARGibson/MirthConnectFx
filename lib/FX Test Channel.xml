@@ -5,10 +5,10 @@
   <enabled>false</enabled>
   <version>2.2.1.5861</version>
   <lastModified>
-    <time>1419955318423</time>
+    <time>1422040657260</time>
     <timezone>Europe/London</timezone>
   </lastModified>
-  <revision>5</revision>
+  <revision>51</revision>
   <sourceConnector>
     <name>sourceConnector</name>
     <properties>
@@ -39,7 +39,22 @@
       <property name="validateConnections">1</property>
     </properties>
     <transformer>
-      <steps/>
+      <steps>
+        <step>
+          <sequenceNumber>0</sequenceNumber>
+          <name>Test Transfomer Step 1</name>
+          <script>channelMap.put(&apos;output&apos;, &apos;hello, world&apos;);</script>
+          <type>JavaScript</type>
+          <data class="map">
+            <entry>
+              <string>Script</string>
+              <string>channelMap.put(&apos;output&apos;, &apos;hello, world&apos;);</string>
+            </entry>
+          </data>
+        </step>
+      </steps>
+      <inboundTemplate encoding="base64"></inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
       <inboundProtocol>HL7V2</inboundProtocol>
       <outboundProtocol>HL7V2</outboundProtocol>
       <inboundProperties>

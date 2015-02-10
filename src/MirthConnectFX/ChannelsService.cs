@@ -26,7 +26,7 @@ namespace MirthConnectFX
 
         public bool Update(Channel channel)
         {
-            var channelXml = channel.ToXml();
+            var channelXml = channel.ToXml().Replace("'", "&apos;");
 
             var request = CreateRequest().ForOperation(Operations.Channels.UpdateChannel);
             request.AddPostData("channel", channelXml);

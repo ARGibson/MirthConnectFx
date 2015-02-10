@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security;
 using System.Text;
 
 namespace MirthConnectFX
@@ -79,7 +80,7 @@ namespace MirthConnectFX
         {
             var sb = new StringBuilder();
             foreach (var postItem in postData)
-                sb.AppendFormat("{0}={1}&", postItem.Key, postItem.Value);
+                sb.AppendFormat("{0}={1}&", postItem.Key, Uri.EscapeDataString(postItem.Value));
 
             return Encoding.UTF8.GetBytes(sb.ToString().TrimEnd('&'));
         }
