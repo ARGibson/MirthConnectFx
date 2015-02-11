@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MirthConnectFX.Model;
+﻿using MirthConnectFX.Model;
 using MirthConnectFX.Utility;
 
 namespace MirthConnectFX

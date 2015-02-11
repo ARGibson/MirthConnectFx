@@ -25,7 +25,7 @@ namespace MirthConnectFX.Model
         [XmlArray("destinationConnectors"), XmlArrayItem("connector")]
         public Connector[]       DestinationConnectors  { get; set; }
         [XmlArray("properties"), XmlArrayItem("property")]
-        public Property[]        Properties             { get; set; }
+        public PropertyList     Properties { get; set; }
         [XmlElement("preprocessingScript")]
         public string            PreprocessingScript    { get; set; }
         [XmlElement("postprocessingScript")]

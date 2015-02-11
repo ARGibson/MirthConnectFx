@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Security;
 using System.Xml.Serialization;
 
 namespace MirthConnectFX.Model
@@ -23,15 +20,5 @@ namespace MirthConnectFX.Model
 
         [XmlElement("data")]
         public HashMapData Data { get; set; }
-    }
-
-    [Serializable]
-    public class HashMapData
-    {
-        [XmlAttribute("class")]
-        public string Class { get; set; }
-
-        [XmlElement("entry")]
-        public List<StringHashMapEntry> Entries { get; set; }
     }
 }

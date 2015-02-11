@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Xml.Serialization;
 
 namespace MirthConnectFX.Model
@@ -25,7 +24,7 @@ namespace MirthConnectFX.Model
         public List<string> Strings { get; set; }
 
         [XmlElement("list")]
-        public EntryList List { get; set; } 
+        public StringHashMapEntryList List { get; set; } 
 
         public StringHashMapEntry() { }
 
@@ -35,11 +34,5 @@ namespace MirthConnectFX.Model
             Strings.Insert(0,key);
             Strings.Insert(1,value);
         }
-    }
-
-    public class EntryList
-    {
-        [XmlElement("string")]
-        public List<string> Strings { get; set; }
     }
 }

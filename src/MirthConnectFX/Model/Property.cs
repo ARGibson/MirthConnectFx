@@ -1,5 +1,4 @@
 using System;
-using System.Security;
 using System.Xml.Serialization;
 
 namespace MirthConnectFX.Model
