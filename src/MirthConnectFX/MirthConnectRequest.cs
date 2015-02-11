@@ -80,9 +80,25 @@ namespace MirthConnectFX
         {
             var sb = new StringBuilder();
             foreach (var postItem in postData)
-                sb.AppendFormat("{0}={1}&", postItem.Key, Uri.EscapeDataString(postItem.Value));
+                sb.AppendFormat("{0}={1}&", postItem.Key, UrlEncode(postItem.Value));
 
             return Encoding.UTF8.GetBytes(sb.ToString().TrimEnd('&'));
+        }
+
+        private static string UrlEncode(string value)
+        {
+            const int limit = 2000;
+            var sb = new StringBuilder();
+            var loops = value.Length / limit;
+
+            for (var i = 0; i <= loops; i++)
+            {
+                sb.Append(i < loops
+                    ? Uri.EscapeDataString(value.Substring(limit*i, limit))
+                    : Uri.EscapeDataString(value.Substring(limit*i)));
+            }
+
+            return sb.ToString();
         }
 
         private void IncludeAuthCookieIfAvailable(IHttpWebRequest httpRequest)
