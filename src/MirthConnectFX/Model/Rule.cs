@@ -10,8 +10,8 @@ namespace MirthConnectFX.Model
         public byte SequenceNumber { get; set; }
         [XmlElement("name")]
         public string Name { get; set; }
-        [XmlArray("data"), XmlArrayItem("entry")]
-        public Entry[] Data { get; set; }
+        [XmlElement("data")]
+        public HashMapData Data { get; set; }
         [XmlElement("type")]
         public string Type { get; set; }
         [XmlElement("script")]

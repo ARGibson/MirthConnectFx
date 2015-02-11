@@ -24,6 +24,9 @@ namespace MirthConnectFX.Model
         [XmlElement("string")]
         public List<string> Strings { get; set; }
 
+        [XmlElement("list")]
+        public EntryList List { get; set; } 
+
         public StringHashMapEntry() { }
 
         public StringHashMapEntry(string key, string value)
@@ -32,5 +35,11 @@ namespace MirthConnectFX.Model
             Strings.Insert(0,key);
             Strings.Insert(1,value);
         }
+    }
+
+    public class EntryList
+    {
+        [XmlElement("string")]
+        public List<string> Strings { get; set; }
     }
 }
