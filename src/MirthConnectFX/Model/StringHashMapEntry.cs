@@ -28,8 +28,9 @@ namespace MirthConnectFX.Model
 
         public StringHashMapEntry(string key, string value)
         {
-            Strings[0] = key;
-            Strings[1] = value;
+            Strings = new List<string>(2);
+            Strings.Insert(0,key);
+            Strings.Insert(1,value);
         }
     }
 }

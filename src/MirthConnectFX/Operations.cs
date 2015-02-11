@@ -10,6 +10,7 @@
         public static class Configuration
         {
             public static string GetVerson { get { return "getVersion"; } }
+            public static string SetGlobalScripts { get { return "setGlobalScripts"; } }
         }
 
         public static class Channels

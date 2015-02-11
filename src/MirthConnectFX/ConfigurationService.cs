@@ -1,4 +1,8 @@
-﻿namespace MirthConnectFX
+﻿using System.Collections.Generic;
+using MirthConnectFX.Model;
+using MirthConnectFX.Utility;
+
+namespace MirthConnectFX
 {
     public class ConfigurationService : ServiceBase, IConfigurationService
     {
@@ -11,6 +15,14 @@
             var response = request.Execute();
 
             return response.Content;
+        }
+
+        public void SetGlobalScripts(GlobalScripts scripts)
+        {
+            var request = CreateRequest().ForOperation(Operations.Configuration.SetGlobalScripts);
+            request.AddPostData("scripts", scripts.ToXml());
+
+            request.Execute();
         }
     }
 }

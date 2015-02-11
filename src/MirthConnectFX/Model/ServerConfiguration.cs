@@ -17,4 +17,11 @@ namespace MirthConnectFX.Model
         public List<StringHashMapEntry> GlobalScripts { get; set; }
 
     }
+
+    [Serializable, XmlRoot("map")]
+    public class GlobalScripts
+    {
+        [XmlElement("entry")]
+        public StringHashMapEntry[] Entries { get; set; }
+    }
 }

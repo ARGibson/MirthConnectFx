@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Xml.Serialization;
 using MirthConnectFX.Model;
+using MirthConnectFX.Utility;
 
 namespace MirthConnectFX.Sample
 {
