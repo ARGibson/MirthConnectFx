@@ -7,5 +7,6 @@ namespace MirthConnectFX
     {
         string GetVersion();
         void SetGlobalScripts(GlobalScripts scripts);
+        ServerConfiguration GetServerConfiguation();
     }
 }

@@ -44,6 +44,9 @@ namespace MirthConnectFX.Sample
 
             client.Engine.UndeployChannels(new[] { channelId });
 
+            var config = client.Configuration.GetServerConfiguation();
+            Console.WriteLine("Channels: {0}, Global Scripts: {1}, Code Templates: {2}", config.Channels.Count, config.GlobalScripts.Count, config.CodeTemplates.Count);
+            
             Console.Read();
         }
 

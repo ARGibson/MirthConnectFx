@@ -11,6 +11,7 @@
         {
             public static string GetVerson { get { return "getVersion"; } }
             public static string SetGlobalScripts { get { return "setGlobalScripts"; } }
+            public static string GetServerConfiguration { get { return "getServerConfiguration"; } }
         }
 
         public static class Channels

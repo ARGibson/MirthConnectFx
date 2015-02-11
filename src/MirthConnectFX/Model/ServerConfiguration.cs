@@ -7,13 +7,20 @@ namespace MirthConnectFX.Model
     [Serializable, XmlRoot("serverConfiguration")]
     public class ServerConfiguration
     {
-        [XmlElement("channels")]
+        public ServerConfiguration ()
+        {
+            Channels = new List<Channel>();
+            CodeTemplates = new List<CodeTemplate>();
+            GlobalScripts = new List<StringHashMapEntry>();
+        }
+        
+        [XmlArray("channels"), XmlArrayItem("channel")]
         public List<Channel> Channels { get; set; }
 
-        [XmlElement("codeTemplates")]
+        [XmlArray("codeTemplates"), XmlArrayItem("codeTemplate")]
         public List<CodeTemplate> CodeTemplates { get; set; }
 
-        [XmlElement("globalScripts")]
+        [XmlArray("globalScripts"), XmlArrayItem("entry")]
         public List<StringHashMapEntry> GlobalScripts { get; set; }
     }
 }

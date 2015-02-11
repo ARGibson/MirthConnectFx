@@ -23,5 +23,13 @@ namespace MirthConnectFX
 
             request.Execute();
         }
+
+        public ServerConfiguration GetServerConfiguation()
+        {
+            var request = CreateRequest().ForOperation(Operations.Configuration.GetServerConfiguration);
+            var response = request.Execute();
+
+            return response.Content.ToObject<ServerConfiguration>();
+        }
     }
 }

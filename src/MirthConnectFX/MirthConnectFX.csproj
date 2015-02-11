@@ -34,11 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +70,9 @@
     <Compile Include="Model\Filter.cs" />
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\ChannelSummary.cs" />
+    <Compile Include="Model\GlobalScripts.cs" />
+    <Compile Include="Model\HashMapData.cs" />
+    <Compile Include="Model\PropertyList.cs" />
     <Compile Include="Model\ServerConfiguration.cs" />
     <Compile Include="Model\Step.cs" />
     <Compile Include="Model\StringHashMapEntry.cs" />
@@ -82,6 +80,7 @@
     <Compile Include="Model\ChannelList.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\Rule.cs" />
+    <Compile Include="Model\StringHashMapEntryList.cs" />
     <Compile Include="Model\Transformer.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
