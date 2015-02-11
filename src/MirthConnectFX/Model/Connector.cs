@@ -9,7 +9,7 @@ namespace MirthConnectFX.Model
         [XmlElement("name")]
         public string Name { get; set; }
         [XmlArray("properties"), XmlArrayItem("property")]
-        public Property[] Properties { get; set; }
+        public PropertyList Properties { get; set; }
         [XmlElement("transformer")]
         public Transformer Transformer { get; set; }
         [XmlElement("filter")]

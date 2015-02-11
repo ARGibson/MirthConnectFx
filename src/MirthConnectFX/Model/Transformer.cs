@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MirthConnectFX.Model
@@ -11,10 +10,10 @@ namespace MirthConnectFX.Model
         public Step[] Steps { get; set; }
 
         [XmlElement("inboundTemplate")]
-        public string InboundTemplate { get; set; }
+        public Template InboundTemplate { get; set; }
 
         [XmlElement("outboundTemplate")]
-        public string OutboundTemplate { get; set; }
+        public Template OutboundTemplate { get; set; }
 
         [XmlElement("inboundProtocol")]
         public string InboundProtocol { get; set; }
@@ -23,9 +22,19 @@ namespace MirthConnectFX.Model
         public string OutboundProtocol { get; set; }
 
         [XmlArray("inboundProperties"), XmlArrayItem("property")]
-        public List<Property> InboundProperties { get; set; }
+        public PropertyList InboundProperties { get; set; }
 
         [XmlArray("outboundProperties"), XmlArrayItem("property")]
-        public List<Property> OutboundProperties { get; set; }
+        public PropertyList OutboundProperties { get; set; }
+    }
+
+    [Serializable]
+    public class Template
+    {
+        [XmlText]
+        public string Value { get; set; }
+
+        [XmlAttribute("encoding")]
+        public string Encoding { get; set; }
     }
 }

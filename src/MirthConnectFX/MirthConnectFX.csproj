@@ -66,6 +66,7 @@
     <Compile Include="MirthVersionException.cs" />
     <Compile Include="Model\ChannelStatus.cs" />
     <Compile Include="Model\CodeTemplate.cs" />
+    <Compile Include="Model\CodeTemplateList.cs" />
     <Compile Include="Model\Connector.cs" />
     <Compile Include="Model\Filter.cs" />
     <Compile Include="Model\Channel.cs" />
