@@ -31,15 +31,5 @@ namespace MirthConnectFX.Model
             Strings[0] = key;
             Strings[1] = value;
         }
-
-        public StringHashMapEntry Encode()
-        {
-            if (Strings == null)
-                return this;
-
-            //Strings[1] = Value.Replace("'", "&apos;");
-
-            return this;
-        }
     }
 }
