@@ -11,6 +11,7 @@
         public IChannelStatusService ChannelStatus  { get { return new ChannelStatusService(mirthConnectRequestFactory, session); }}
         public IEngineService        Engine         { get { return new EngineService(mirthConnectRequestFactory, session); }}
         public ICodeTemplateService  CodeTemplates  { get { return new CodeTemplateService(mirthConnectRequestFactory, session); }}
+        public IMessageService       Messages       { get { return new MessageService(mirthConnectRequestFactory, session); }}
 
         protected MirthConnectClient(string baseUrl)
         {

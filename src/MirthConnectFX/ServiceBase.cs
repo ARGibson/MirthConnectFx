@@ -22,13 +22,5 @@
 
             return request;
         }
-
-        public void StartChannel(string channelId)
-        {
-            var request = CreateRequest().ForOperation(Operations.ChannelStatus.StartChannel);
-            request.AddPostData("id", channelId);
-
-            request.Execute();
-        }
     }
 }

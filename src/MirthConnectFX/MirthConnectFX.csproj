@@ -54,12 +54,14 @@
     <Compile Include="Interfaces\IHttpWebRequest.cs" />
     <Compile Include="Interfaces\IHttpWebRequestFactory.cs" />
     <Compile Include="Interfaces\IHttpWebResponse.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
     <Compile Include="Interfaces\IMirthConnectClient.cs" />
     <Compile Include="Interfaces\IMirthConnectSession.cs" />
     <Compile Include="Interfaces\IMirthConnectRequest.cs" />
     <Compile Include="Interfaces\IMirthConnectRequestFactory.cs" />
     <Compile Include="Interfaces\IMirthConnectResponse.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="MessageService.cs" />
     <Compile Include="MirthConnectClient.cs" />
     <Compile Include="MirthConnectException.cs" />
     <Compile Include="MirthConnectRequest.cs" />

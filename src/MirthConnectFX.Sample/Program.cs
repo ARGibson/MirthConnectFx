@@ -53,6 +53,8 @@ namespace MirthConnectFX.Sample
 
             client.CodeTemplates.UpdateCodeTemplates(codeTemplatesList);
 
+            client.Messages.ClearMessages(channelId);
+
             Console.Read();
         }
 

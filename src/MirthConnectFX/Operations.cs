@@ -38,5 +38,10 @@
         {
             public static string UpdateCodeTemplatse { get { return "updateCodeTemplates"; } }
         }
+
+        public static class Messages
+        {
+            public static string ClearMessages { get { return "clearMessages"; } }
+        }
     }
 }
