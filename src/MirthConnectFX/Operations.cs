@@ -33,5 +33,10 @@
             public static string DeployChannels { get { return "deployChannels"; } }
             public static string UndeplyChannels { get { return "undeployChannels"; } }
         }
+
+        public static class CodeTemplates
+        {
+            public static string UpdateCodeTemplatse { get { return "updateCodeTemplates"; } }
+        }
     }
 }

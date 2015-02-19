@@ -10,6 +10,7 @@
         public IChannelsService      Channels       { get { return new ChannelsService(mirthConnectRequestFactory, session); }}
         public IChannelStatusService ChannelStatus  { get { return new ChannelStatusService(mirthConnectRequestFactory, session); }}
         public IEngineService        Engine         { get { return new EngineService(mirthConnectRequestFactory, session); }}
+        public ICodeTemplateService  CodeTemplates  { get { return new CodeTemplateService(mirthConnectRequestFactory, session); }}
 
         protected MirthConnectClient(string baseUrl)
         {

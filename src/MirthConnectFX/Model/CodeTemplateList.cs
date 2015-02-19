@@ -9,5 +9,10 @@ namespace MirthConnectFX.Model
     {
         [XmlElement("codeTemplate")]
         public List<CodeTemplate> CodeTemplates { get; set; }
+
+        public CodeTemplateList()
+        {
+            CodeTemplates = new List<CodeTemplate>();
+        }
     }
 }

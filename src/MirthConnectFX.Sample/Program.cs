@@ -46,7 +46,13 @@ namespace MirthConnectFX.Sample
 
             var config = client.Configuration.GetServerConfiguation();
             Console.WriteLine("Channels: {0}, Global Scripts: {1}, Code Templates: {2}", config.Channels.Count, config.GlobalScripts.Count, config.CodeTemplates.Count);
-            
+
+            var codeTemplatesList = new CodeTemplateList();
+            foreach (var codeTemplate in config.CodeTemplates)
+                codeTemplatesList.CodeTemplates.Add(codeTemplate);
+
+            client.CodeTemplates.UpdateCodeTemplates(codeTemplatesList);
+
             Console.Read();
         }
 

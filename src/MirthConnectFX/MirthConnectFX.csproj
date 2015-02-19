@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="ChannelsService.cs" />
     <Compile Include="ChannelStatusService.cs" />
+    <Compile Include="CodeTemplateService.cs" />
     <Compile Include="ConfigurationService.cs" />
     <Compile Include="DefaultMirthConnectRequestFactory.cs" />
     <Compile Include="EngineService.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="HttpWebResponseAdapter.cs" />
     <Compile Include="Interfaces\IChannelStatusService.cs" />
     <Compile Include="Interfaces\IChannelsService.cs" />
+    <Compile Include="Interfaces\ICodeTemplateService.cs" />
     <Compile Include="Interfaces\IConfigurationService.cs" />
     <Compile Include="Interfaces\IEngineService.cs" />
     <Compile Include="Interfaces\IHttpWebRequest.cs" />
