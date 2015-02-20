@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Xml.Serialization;
 using MirthConnectFX.Model;
+using MirthConnectFX.Utility;
 
 namespace MirthConnectFX.Sample
 {
@@ -54,6 +55,15 @@ namespace MirthConnectFX.Sample
             client.CodeTemplates.UpdateCodeTemplates(codeTemplatesList);
 
             client.Messages.ClearMessages(channelId);
+
+            var filter = new MessageObjectFilter
+            {
+                ChannelId = channelId,
+                StartDate = DateTime.Now.AddDays(-1).ToMirthDateTime("Europe/London"),
+                EndDate = DateTime.Now.AddDays(1).ToMirthDateTime("Europe/London")
+            };
+
+            client.Messages.CreateTempTable("temp", filter);
 
             Console.Read();
         }

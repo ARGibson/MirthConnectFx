@@ -1,3 +1,6 @@
+using MirthConnectFX.Model;
+using MirthConnectFX.Utility;
+
 namespace MirthConnectFX
 {
     public class MessageService : ServiceBase, IMessageService
@@ -13,6 +16,16 @@ namespace MirthConnectFX
             request.AddPostData("data", channelId);
 
             request.Execute();
+        }
+
+        public int CreateTempTable(string uid, MessageObjectFilter filter)
+        {
+            var request = CreateRequest().ForOperation(Operations.Messages.CreateTempTable);
+            request.AddPostData("uid", uid);
+            request.AddPostData("filter", filter.ToXml());
+
+            var response = request.Execute();
+            return int.Parse(response.Content);
         }
     }
 }

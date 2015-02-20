@@ -42,6 +42,7 @@
         public static class Messages
         {
             public static string ClearMessages { get { return "clearMessages"; } }
+            public static string CreateTempTable { get { return "createMessagesTempTable"; } }
         }
     }
 }

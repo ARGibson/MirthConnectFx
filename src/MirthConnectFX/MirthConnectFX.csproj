@@ -93,6 +93,7 @@
     <Compile Include="MirthConnectResponse.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="UsersService.cs" />
+    <Compile Include="Utility\DateTimeExtensions.cs" />
     <Compile Include="Utility\XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,19 +17,19 @@ namespace MirthConnectFX.Model
         [XmlElement("endDate")]
         public MirthDateTime EndDate { get; set; }
         [XmlElement("status")]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
         [XmlElement("source")]
         public string Source { get; set; }
         [XmlElement("connectorName")]
         public string ConnectorName { get; set; }
         [XmlElement("searchRowData")]
-        public bool SearchRowData { get; set; }
+        public bool? SearchRowData { get; set; }
         [XmlElement("searchTransformedData")]
-        public bool SearchTransformedData { get; set; }
+        public bool? SearchTransformedData { get; set; }
         [XmlElement("searchEncodedData")]
-        public bool SearchEncodedData { get; set; }
+        public bool? SearchEncodedData { get; set; }
         [XmlElement("searchErrors")]
-        public bool SearchErrors { get; set; }
+        public bool? SearchErrors { get; set; }
         [XmlElement("quickSearch")]
         public string QuickSearch { get; set; }
         [XmlElement("searchCriteria")]
@@ -37,15 +37,50 @@ namespace MirthConnectFX.Model
         [XmlElement("type")]
         public string Type { get; set; }
         [XmlElement("protocol")]
-        public Protocol Protocol { get; set; }
+        public Protocol? Protocol { get; set; }
         [XmlElement("ignoreQueued")]
-        public bool IgnoreQueued { get; set; }
+        public bool? IgnoreQueued { get; set; }
         [XmlArray("channelIdList"), XmlArrayItem("string")]
         public List<string> ChannelIdList { get; set; }
 
         public MessageObjectFilter()
         {
             ChannelIdList = new List<string>();
+        }
+
+        public bool ShouldSerializeStatus()
+        {
+            return Status.HasValue;
+        }
+
+        public bool ShouldSerializeSearchRowData()
+        {
+            return SearchRowData.HasValue;
+        }
+
+        public bool ShouldSerializeSearchTransformedData()
+        {
+            return SearchTransformedData.HasValue;
+        }
+
+        public bool ShouldSerializeSearchEncodedData()
+        {
+            return SearchEncodedData.HasValue;
+        }
+
+        public bool ShouldSerializeSearchErrors()
+        {
+            return SearchErrors.HasValue;
+        }
+
+        public bool ShouldSerializeProtocol()
+        {
+            return Protocol.HasValue;
+        }
+
+        public bool ShouldSerializeIgnoreQueued()
+        {
+            return IgnoreQueued.HasValue;
         }
     }
 
