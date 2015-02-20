@@ -9,5 +9,6 @@ namespace MirthConnectFX
         int CreateTempTable(string uid, MessageObjectFilter filter);
         void RemoveFilterTable(string uid);
         IEnumerable<MessageObject> GetMessagesByPage(string uid, int page, int pageSize, int maxMessages);
+        //void ProcessMessage(string channelId, string message, Protocol protocol);
     }
 }

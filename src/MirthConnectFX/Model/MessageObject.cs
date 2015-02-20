@@ -17,7 +17,7 @@ namespace MirthConnectFX.Model
         [XmlElement("type")]
         public string Type { get; set; }
         [XmlElement("status")]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
         [XmlElement("dateCreated")]
         public MirthDateTime DateCreated { get; set; }
         [XmlElement("rawData")]
@@ -41,7 +41,7 @@ namespace MirthConnectFX.Model
         [XmlElement("correlationId")]
         public string CorrelationId { get; set; }
         [XmlElement("attachment")]
-        public bool Attachment { get; set; }
+        public bool? Attachment { get; set; }
         [XmlElement("connectorMap")]
         public HashMapData ConnectorMap { get; set; }
         [XmlElement("responseMap")]
@@ -50,5 +50,25 @@ namespace MirthConnectFX.Model
         public HashMapData ChannelMap { get; set; }
         [XmlElement("context")]
         public HashMapData Context { get; set; }
+
+        public MessageObject()
+        {
+            Status = Model.Status.UNKNOWN;
+            ConnectorMap = new HashMapData();
+            ResponseMap = new HashMapData();
+            ChannelMap = new HashMapData();
+            Context = new HashMapData();
+        }
+
+        public bool ShouldSerializeStatus() { return Status != null; }
+        public bool ShouldSerializeRawDataProtocol() { return RawDataProtocol != null; }
+        public bool ShouldSerializeTransformedDataProtocol() { return TransformedDataProtocol != null; }
+        public bool ShouldSerializeEncrypted() { return Encrypted.HasValue; }
+        public bool ShouldSerializeAttachment() { return Attachment.HasValue; }
+        public bool ShouldSerializeEncodedDataProtocol() { return EncodedDataProtocol != null; }
+        public bool ShouldSerializeConnectorMap() { return ConnectorMap != null; }
+        public bool ShouldSerializeResponseMap() { return ResponseMap != null; }
+        public bool ShouldSerializeChannelMap() { return ChannelMap != null; }
+        public bool ShouldSerializeContext() { return Context != null; }
     }
 }

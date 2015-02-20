@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MirthConnectFX.Model;
@@ -50,6 +51,24 @@ namespace MirthConnectFX
             var messages = response.Content.ToObject<MessageObjectList>();
 
             return messages.MessageObjects != null ? messages.MessageObjects.ToList() : new List<MessageObject>();
+        }
+
+        public void ProcessMessage(string channelId, string message, Protocol protocol)
+        {
+            var request = CreateRequest().ForOperation(Operations.Messages.ProcessMessage);
+            var messageObject = new MessageObject
+            {
+                Id = Guid.NewGuid().ToString(),
+                ChannelId = channelId,
+                RawDataProtocol = protocol,
+                RawData = message.Replace("\r\n", "&#xd;"),
+                DateCreated = DateTime.Now.ToMirthDateTime("Europe/London"),
+                ConnectorName = "Source"
+            };
+
+            request.AddPostData("message", messageObject.ToXml());
+
+            request.Execute();
         }
     }
 }

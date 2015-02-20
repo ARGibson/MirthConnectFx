@@ -45,6 +45,7 @@
             public static string CreateTempTable { get { return "createMessagesTempTable"; } }
             public static string RemoveFilterTable { get { return "removeFilterTables"; } }
             public static string GetMessagesByPage { get { return "getMessagesByPage"; }}
+            public static string ProcessMessage { get { return "processMessage"; } }
         }
     }
 }
