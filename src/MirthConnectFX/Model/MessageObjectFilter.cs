@@ -42,6 +42,11 @@ namespace MirthConnectFX.Model
         public bool IgnoreQueued { get; set; }
         [XmlArray("channelIdList"), XmlArrayItem("string")]
         public List<string> ChannelIdList { get; set; }
+
+        public MessageObjectFilter()
+        {
+            ChannelIdList = new List<string>();
+        }
     }
 
     public enum Status
