@@ -64,6 +64,7 @@ namespace MirthConnectFX.Sample
             };
 
             client.Messages.CreateTempTable("temp", filter);
+            client.Messages.RemoveFilterTable("temp");
 
             Console.Read();
         }

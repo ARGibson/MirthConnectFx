@@ -6,5 +6,6 @@ namespace MirthConnectFX
     {
         void ClearMessages(string channelId);
         int CreateTempTable(string uid, MessageObjectFilter filter);
+        void RemoveFilterTable(string uid);
     }
 }

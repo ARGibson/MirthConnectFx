@@ -27,5 +27,13 @@ namespace MirthConnectFX
             var response = request.Execute();
             return int.Parse(response.Content);
         }
+
+        public void RemoveFilterTable(string uid)
+        {
+            var request = CreateRequest().ForOperation(Operations.Messages.RemoveFilterTable);
+            request.AddPostData("uid", uid);
+
+            request.Execute();
+        }
     }
 }
