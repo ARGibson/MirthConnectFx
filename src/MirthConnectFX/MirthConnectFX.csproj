@@ -77,6 +77,7 @@
     <Compile Include="Model\ChannelSummary.cs" />
     <Compile Include="Model\GlobalScripts.cs" />
     <Compile Include="Model\HashMapData.cs" />
+    <Compile Include="Model\MessageObjectFilter.cs" />
     <Compile Include="Model\PropertyList.cs" />
     <Compile Include="Model\ServerConfiguration.cs" />
     <Compile Include="Model\Step.cs" />
