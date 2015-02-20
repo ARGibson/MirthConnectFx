@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace MirthConnectFX.Model
@@ -81,6 +82,11 @@ namespace MirthConnectFX.Model
         public bool ShouldSerializeIgnoreQueued()
         {
             return IgnoreQueued.HasValue;
+        }
+
+        public bool ShouldSerializeChannelIdList()
+        {
+            return ChannelIdList.Any();
         }
     }
 

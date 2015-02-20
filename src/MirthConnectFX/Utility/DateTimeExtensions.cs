@@ -11,7 +11,7 @@ namespace MirthConnectFX.Utility
 
             var result = new MirthDateTime
             {
-                Time = Convert.ToUInt64((source - epoch).TotalSeconds),
+                Time = Convert.ToUInt64((source - epoch).TotalMilliseconds),
                 Timezone = timezone
             };
 

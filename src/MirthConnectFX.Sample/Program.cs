@@ -63,7 +63,12 @@ namespace MirthConnectFX.Sample
                 EndDate = DateTime.Now.AddDays(1).ToMirthDateTime("Europe/London")
             };
 
+            client.Messages.RemoveFilterTable("temp");
             client.Messages.CreateTempTable("temp", filter);
+
+            var messages = client.Messages.GetMessagesByPage("temp", 0, 20, 20);
+            Console.WriteLine("{0} messages", messages.Count());
+
             client.Messages.RemoveFilterTable("temp");
 
             Console.Read();

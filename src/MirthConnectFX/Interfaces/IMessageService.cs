@@ -1,4 +1,5 @@
-﻿using MirthConnectFX.Model;
+﻿using System.Collections.Generic;
+using MirthConnectFX.Model;
 
 namespace MirthConnectFX
 {
@@ -7,5 +8,6 @@ namespace MirthConnectFX
         void ClearMessages(string channelId);
         int CreateTempTable(string uid, MessageObjectFilter filter);
         void RemoveFilterTable(string uid);
+        IEnumerable<MessageObject> GetMessagesByPage(string uid, int page, int pageSize, int maxMessages);
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using MirthConnectFX.Model;
 using MirthConnectFX.Utility;
 
@@ -34,6 +36,20 @@ namespace MirthConnectFX
             request.AddPostData("uid", uid);
 
             request.Execute();
+        }
+
+        public IEnumerable<MessageObject> GetMessagesByPage(string uid, int page, int pageSize, int maxMessages)
+        {
+            var request = CreateRequest().ForOperation(Operations.Messages.GetMessagesByPage);
+            request.AddPostData("uid", uid);
+            request.AddPostData("page", page.ToString());
+            request.AddPostData("pageSize", pageSize.ToString());
+            request.AddPostData("maxMessages", maxMessages.ToString());
+
+            var response = request.Execute();
+            var messages = response.Content.ToObject<MessageObjectList>();
+
+            return messages.MessageObjects != null ? messages.MessageObjects.ToList() : new List<MessageObject>();
         }
     }
 }
