@@ -1,3 +1,5 @@
+using MirthConnectFX.Interfaces;
+
 namespace MirthConnectFX
 {
     public interface IMirthConnectClient
@@ -9,6 +11,7 @@ namespace MirthConnectFX
         IEngineService          Engine          { get; }
         ICodeTemplateService    CodeTemplates   { get; }
         IMessageService         Messages        { get; }
+        IEventsService          Events          { get; }
 
         IMirthConnectClient WithRemoteRequestFactory(IMirthConnectRequestFactory _mirthConnectRequestFactory);
         IMirthConnectClient WithSession(IMirthConnectSession session);

@@ -71,6 +71,8 @@ namespace MirthConnectFX.Sample
 
             client.Messages.RemoveFilterTable("temp");
 
+            client.Events.RemoveAllEvents();
+
             Console.Read();
         }
 

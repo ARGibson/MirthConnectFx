@@ -34,6 +34,11 @@
             public static string UndeplyChannels { get { return "undeployChannels"; } }
         }
 
+        public static class Events
+        {
+            public static string RemoveAllEvents { get { return "removeAllEvents"; } }
+        }
+
         public static class CodeTemplates
         {
             public static string UpdateCodeTemplatse { get { return "updateCodeTemplates"; } }
